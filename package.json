@@ -1,0 +1,28 @@
+{
+  "name": "cdtn1-vuhoangthanhvy-l2",
+  "version": "1.0.0",
+  "description": "**Sinh viên:** Vũ Hoàng Thanh Vy - MSSV: 2374802010580  \r **Học phần:** Chuyên đề Tốt nghiệp 1 (HK1 2026-2027)  \r **Track:** SE  \r **Luồng nghiệp vụ:** L2 - Tiếp nhận và phân loại yêu cầu bảo hành",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamthvie/cdtn1-vuhoangthanhvy-L2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/iamthvie/cdtn1-vuhoangthanhvy-L2/issues"
+  },
+  "homepage": "https://github.com/iamthvie/cdtn1-vuhoangthanhvy-L2#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
