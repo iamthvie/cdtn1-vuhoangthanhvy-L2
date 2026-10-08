@@ -1,0 +1,179 @@
+<mxfile host="Electron" pages="3">
+  <diagram id="wRpamYElG1k7jmD-1seP" name="Use Case">
+    <mxGraphModel dx="1585" dy="975" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;verticalAlign=top;fontStyle=1;" value="Hệ thống: Tiếp nhận yêu cầu bảo hành – tra cứu, xác minh bảo hành, ghi nhận phiếu L2" vertex="1">
+          <mxGeometry height="740" width="600" x="440" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC1: Tra cứu thiết bị và lịch sử phiếu bảo hành" vertex="1">
+          <mxGeometry height="64" width="250" x="455" y="308" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC2: Xác định tình trạng bảo hành" vertex="1">
+          <mxGeometry height="64" width="250" x="455" y="428" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-4" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC3: Chọn phụ kiện kèm theo" vertex="1">
+          <mxGeometry height="64" width="250" x="455" y="588" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC4: Tạo phiếu bảo hành mới" vertex="1">
+          <mxGeometry height="64" width="250" x="770" y="518" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-6" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC5: Gửi yêu cầu phê duyệt" vertex="1">
+          <mxGeometry height="64" width="230" x="515" y="693" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-7" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC6: Xem danh sách yêu cầu phê duyệt đang chờ" vertex="1">
+          <mxGeometry height="76" width="250" x="770" y="782" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-8" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC7: Phê duyệt hoặc từ chối yêu cầu phê duyệt" vertex="1">
+          <mxGeometry height="76" width="250" x="770" y="882" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-9" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="UC8: Xem danh sách phiếu bảo hành trong ngày" vertex="1">
+          <mxGeometry height="76" width="250" x="455" y="832" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-10" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Nhân viên tiếp nhận" vertex="1">
+          <mxGeometry height="70" width="40" x="245" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-11" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="Quản lý trung tâm" vertex="1">
+          <mxGeometry height="70" width="40" x="1075" y="810" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-12" edge="1" parent="1" source="u1eIo1Q7XycPyRKMbQw6-10" style="endArrow=none;html=1;rounded=0;" target="u1eIo1Q7XycPyRKMbQw6-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-13" edge="1" parent="1" source="u1eIo1Q7XycPyRKMbQw6-10" style="endArrow=none;html=1;rounded=0;" target="u1eIo1Q7XycPyRKMbQw6-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-14" edge="1" parent="1" source="u1eIo1Q7XycPyRKMbQw6-10" style="endArrow=none;html=1;rounded=0;" target="u1eIo1Q7XycPyRKMbQw6-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-15" edge="1" parent="1" source="u1eIo1Q7XycPyRKMbQw6-10" style="endArrow=none;html=1;rounded=0;" target="u1eIo1Q7XycPyRKMbQw6-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-16" edge="1" parent="1" source="u1eIo1Q7XycPyRKMbQw6-10" style="endArrow=none;html=1;rounded=0;" target="u1eIo1Q7XycPyRKMbQw6-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-17" edge="1" parent="1" source="u1eIo1Q7XycPyRKMbQw6-11" style="endArrow=none;html=1;rounded=0;" target="u1eIo1Q7XycPyRKMbQw6-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-18" edge="1" parent="1" source="u1eIo1Q7XycPyRKMbQw6-11" style="endArrow=none;html=1;rounded=0;" target="u1eIo1Q7XycPyRKMbQw6-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-19" edge="1" parent="1" source="u1eIo1Q7XycPyRKMbQw6-5" style="endArrow=open;endFill=0;dashed=1;html=1;rounded=0;labelBackgroundColor=#ffffff;" target="u1eIo1Q7XycPyRKMbQw6-2" value="«include»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-20" edge="1" parent="1" source="u1eIo1Q7XycPyRKMbQw6-5" style="endArrow=open;endFill=0;dashed=1;html=1;rounded=0;labelBackgroundColor=#ffffff;" target="u1eIo1Q7XycPyRKMbQw6-3" value="«include»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-21" edge="1" parent="1" source="u1eIo1Q7XycPyRKMbQw6-5" style="endArrow=open;endFill=0;dashed=1;html=1;rounded=0;labelBackgroundColor=#ffffff;" target="u1eIo1Q7XycPyRKMbQw6-4" value="«include»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-22" edge="1" parent="1" source="u1eIo1Q7XycPyRKMbQw6-6" style="endArrow=open;endFill=0;dashed=1;html=1;rounded=0;labelBackgroundColor=#ffffff;" target="u1eIo1Q7XycPyRKMbQw6-5" value="«extend»">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u1eIo1Q7XycPyRKMbQw6-23" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;spacingLeft=8;fontSize=10;" value="&lt;b&gt;CHÚ THÍCH&lt;/b&gt;&lt;br&gt;• Hình người (ngoài ranh giới hệ thống): actor – Nhân viên tiếp nhận, Quản lý trung tâm.&lt;br&gt;• Hình elip trong khung: use case (tên = động từ + đối tượng). Khung chữ nhật: ranh giới hệ thống.&lt;br&gt;• Đường liền: actor tham gia use case.&lt;br&gt;• Mũi tên đứt «include»: UC4 luôn gọi UC1, UC2, UC3 trong luồng chính (mũi tên chỉ từ UC4 tới use case được gọi).&lt;br&gt;• Mũi tên đứt «extend»: UC5 chỉ xảy ra khi phiếu &quot;Chưa xác minh bảo hành&quot; hoặc &quot;Hết bảo hành&quot; cần xét ngoại lệ (mũi tên chỉ từ UC5 tới UC4).&lt;br&gt;• Không có actor hệ thống ngoài trong phạm vi này (gửi thông báo SMS/Zalo thuộc WON&#39;T).&lt;br&gt;• Ngoài phạm vi (WON&#39;T): tạo khách/thiết bị mới, phân loại nhóm sự cố, mức ưu tiên, hạn cam kết, gán kỹ thuật viên." vertex="1">
+          <mxGeometry height="140" width="960" x="210" y="1010" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="arch-l2" name="Kiến trúc L2">
+    <mxGraphModel dx="1717" dy="1057" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="1043" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;fontStyle=1;fontSize=14;" value="Kiến trúc phân lớp – luồng L2: Tiếp nhận yêu cầu bảo hành" vertex="1">
+          <mxGeometry height="30" width="800" x="100" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="cont" parent="1" style="rounded=0;html=1;fillColor=none;strokeColor=#444444;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=8;fontStyle=1;fontColor=#444444;fontSize=11;" value="Backend – một tiến trình" vertex="1">
+          <mxGeometry height="470" width="510" x="170" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="ACT" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;align=left;verticalAlign=top;spacing=8;fontSize=10;arcSize=8;" value="&lt;b&gt;Người dùng: Nhân viên tiếp nhận · Quản lý trung tâm&lt;/b&gt;" vertex="1">
+          <mxGeometry height="46" width="450" x="200" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="UI" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;align=left;verticalAlign=top;spacing=8;fontSize=10;arcSize=8;" value="&lt;b&gt;① Giao diện web (trình duyệt)&lt;/b&gt;&lt;br&gt;Trách nhiệm: nhập serial/IMEI, mô tả lỗi; chọn phụ kiện; hiển thị thiết bị, tình trạng bảo hành, cảnh báo sửa lặp lại, danh sách phiếu bảo hành và yêu cầu phê duyệt (3 màn hình – Mục 5). KHÔNG chứa quy tắc nghiệp vụ." vertex="1">
+          <mxGeometry height="100" width="450" x="200" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="API" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;align=left;verticalAlign=top;spacing=8;fontSize=10;arcSize=8;" value="&lt;b&gt;② Lớp API (Controller)&lt;/b&gt;&lt;br&gt;Trách nhiệm: xác thực đăng nhập; phân quyền theo vai trò và trung tâm (QT-14); kiểm tra hợp lệ đầu vào, Idempotency-Key; che số điện thoại theo vai trò (QT-15, NFR2); đổi lỗi thành mã HTTP." vertex="1">
+          <mxGeometry height="100" width="450" x="200" y="345" as="geometry" />
+        </mxCell>
+        <mxCell id="SVC" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;align=left;verticalAlign=top;spacing=8;fontSize=10;arcSize=8;" value="&lt;b&gt;③ Lớp nghiệp vụ (Service)&lt;/b&gt;&lt;br&gt;Trách nhiệm: xác định tình trạng bảo hành (QT-05); cảnh báo sửa lặp lại (BR-A2); sinh mã phiếu; lưu phiếu trong một giao dịch (NFR4); xử lý yêu cầu phê duyệt (BR-A1); ghi nhật ký trạng thái phiếu (QT-06)." vertex="1">
+          <mxGeometry height="110" width="450" x="200" y="495" as="geometry" />
+        </mxCell>
+        <mxCell id="REPO" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;align=left;verticalAlign=top;spacing=8;fontSize=10;arcSize=8;" value="&lt;b&gt;④ Lớp truy cập dữ liệu (Repository)&lt;/b&gt;&lt;br&gt;Trách nhiệm: truy vấn và ghi thiết bị, phiếu bảo hành, yêu cầu phê duyệt; lọc theo trung tâm; xóa mềm (QT-13). KHÔNG chứa quy tắc nghiệp vụ." vertex="1">
+          <mxGeometry height="90" width="450" x="200" y="655" as="geometry" />
+        </mxCell>
+        <mxCell id="DB" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;align=left;verticalAlign=top;spacing=8;fontSize=10;arcSize=8;" value="&lt;b&gt;⑤ CSDL quan hệ&lt;/b&gt;&lt;br&gt;Lưu khách, thiết bị, phiếu bảo hành, yêu cầu phê duyệt, nhật ký trạng thái phiếu; chỉ mục trên serial/IMEI (NFR1); khóa duy nhất cho Idempotency-Key (NFR4)." vertex="1">
+          <mxGeometry height="84" width="450" x="200" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="e0" edge="1" parent="1" source="ACT" style="endArrow=block;endFill=1;html=1;strokeWidth=2;labelBackgroundColor=#ffffff;fontSize=9;align=left;" target="UI" value="thao tác trên trình duyệt">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="UI" style="endArrow=block;endFill=1;html=1;strokeWidth=2;labelBackgroundColor=#ffffff;fontSize=9;align=left;" target="API" value="HTTPS · REST/JSON · token đăng nhập&lt;br&gt;GET/POST/PATCH; POST kèm Idempotency-Key">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="API" style="endArrow=block;endFill=1;html=1;strokeWidth=2;labelBackgroundColor=#ffffff;fontSize=9;align=left;" target="SVC" value="gọi hàm trực tiếp (dữ liệu đã kiểm hợp lệ)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="SVC" style="endArrow=block;endFill=1;html=1;strokeWidth=2;labelBackgroundColor=#ffffff;fontSize=9;align=left;" target="REPO" value="gọi hàm trực tiếp (đối tượng nghiệp vụ)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="REPO" style="endArrow=block;endFill=1;html=1;strokeWidth=2;labelBackgroundColor=#ffffff;fontSize=9;align=left;" target="DB" value="SQL qua giao dịch (transaction)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="oos" parent="1" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#b85450;strokeWidth=2;align=left;verticalAlign=top;spacing=8;fontSize=10;fontColor=#000000;" value="&lt;b&gt;NGOÀI PHẠM VI (không thiết kế ở BT1)&lt;/b&gt;&lt;br&gt;• Gửi thông báo SMS/Zalo cho khách.&lt;br&gt;• Hệ thống quản lý khách hàng (L1): tạo hồ sơ khách, tra cứu khách theo số điện thoại; đăng ký thiết bị mới.&lt;br&gt;• Phân loại nhóm sự cố, mức ưu tiên, hạn cam kết (QT-04).&lt;br&gt;• Gán kỹ thuật viên, đặt lịch hẹn, theo dõi sửa chữa, báo cáo quá hạn.&lt;br&gt;• Thiết kế triển khai, hạ tầng và mô hình hóa mối đe dọa bảo mật (thuộc Chuyên đề tốt nghiệp 2)." vertex="1">
+          <mxGeometry height="330" width="260" x="720" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;spacing=8;fontSize=10;" value="&lt;b&gt;CHÚ THÍCH&lt;/b&gt;&lt;br&gt;• Khung chữ nhật: thành phần/lớp; số ①–⑤ là thứ tự gọi từ người dùng xuống dữ liệu. Khung lớn bao ②③④: cùng một ứng dụng backend.&lt;br&gt;• Mũi tên liền: hướng gọi (bên gọi → bên được gọi); nhãn trên mũi tên là cách trao đổi (giao thức hoặc kiểu gọi).&lt;br&gt;• Quy tắc phụ thuộc: chỉ gọi lớp ngay bên dưới (UI → API → Service → Repository → CSDL), không gọi bỏ lớp.&lt;br&gt;• Khung nét đứt bên phải: phần NGOÀI PHẠM VI. Mã QT/BR/NFR tham chiếu tới SRS (Mục 4, 5)." vertex="1">
+          <mxGeometry height="86" width="960" x="20" y="945" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="z60y-lrTT_7_IZH_dL1z" name="ERD">
+    <mxGraphModel dx="1471" dy="906" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="TXAm5ruBQp84zsHxxmX7-14" parent="1" style="text;html=1;align=center;fontStyle=1;fontSize=14;" value="ERD – luồng L2: Tiếp nhận yêu cầu bảo hành (6 bảng)" vertex="1">
+          <mxGeometry height="30" width="800" x="260" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="TXAm5ruBQp84zsHxxmX7-15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=8;fontSize=10;fontFamily=Courier New;" value="&lt;b&gt;customer&lt;/b&gt;&lt;hr&gt;&lt;font color=&quot;#b85450&quot;&gt;PK&lt;/font&gt; &lt;b&gt;customer_id&lt;/b&gt; &lt;font color=&quot;#777777&quot;&gt;BIGINT&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; full_name &lt;font color=&quot;#777777&quot;&gt;VARCHAR(100)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; phone &lt;font color=&quot;#777777&quot;&gt;VARCHAR(15)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; created_at &lt;font color=&quot;#777777&quot;&gt;TIMESTAMPTZ&lt;/font&gt;" vertex="1">
+          <mxGeometry height="104" width="240" x="190" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="TXAm5ruBQp84zsHxxmX7-16" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=8;fontSize=10;fontFamily=Courier New;" value="&lt;b&gt;device&lt;/b&gt;&lt;hr&gt;&lt;font color=&quot;#b85450&quot;&gt;PK&lt;/font&gt; &lt;b&gt;device_id&lt;/b&gt; &lt;font color=&quot;#777777&quot;&gt;BIGINT&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;FK&lt;/font&gt; customer_id &lt;font color=&quot;#777777&quot;&gt;BIGINT&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;UQ&lt;/font&gt; serial_no &lt;font color=&quot;#777777&quot;&gt;VARCHAR(50)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; model_name &lt;font color=&quot;#777777&quot;&gt;VARCHAR(100)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; purchase_date &lt;font color=&quot;#777777&quot;&gt;DATE  (NULL)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; warranty_months &lt;font color=&quot;#777777&quot;&gt;SMALLINT&lt;/font&gt;" vertex="1">
+          <mxGeometry height="140" width="240" x="190" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="TXAm5ruBQp84zsHxxmX7-17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=8;fontSize=10;fontFamily=Courier New;" value="&lt;b&gt;ticket&lt;/b&gt;&lt;hr&gt;&lt;font color=&quot;#b85450&quot;&gt;PK&lt;/font&gt; &lt;b&gt;ticket_id&lt;/b&gt; &lt;font color=&quot;#777777&quot;&gt;BIGINT&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;UQ&lt;/font&gt; ticket_code &lt;font color=&quot;#777777&quot;&gt;VARCHAR(20)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;FK&lt;/font&gt; device_id &lt;font color=&quot;#777777&quot;&gt;BIGINT&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; service_center_id &lt;font color=&quot;#777777&quot;&gt;INTEGER&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; received_by &lt;font color=&quot;#777777&quot;&gt;INTEGER&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; received_at &lt;font color=&quot;#777777&quot;&gt;TIMESTAMPTZ&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; issue_desc &lt;font color=&quot;#777777&quot;&gt;VARCHAR(1000)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; warranty_status &lt;font color=&quot;#777777&quot;&gt;VARCHAR(20)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; is_chargeable &lt;font color=&quot;#777777&quot;&gt;BOOLEAN&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; status &lt;font color=&quot;#777777&quot;&gt;VARCHAR(20)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; priority &lt;font color=&quot;#777777&quot;&gt;VARCHAR(20)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; incident_group &lt;font color=&quot;#777777&quot;&gt;VARCHAR(50)  (NULL)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;UQ&lt;/font&gt; idempotency_key &lt;font color=&quot;#777777&quot;&gt;UUID&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; is_deleted &lt;font color=&quot;#777777&quot;&gt;BOOLEAN&lt;/font&gt;" vertex="1">
+          <mxGeometry height="284" width="270" x="490" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="TXAm5ruBQp84zsHxxmX7-18" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=8;fontSize=10;fontFamily=Courier New;" value="&lt;b&gt;ticket_accessory&lt;/b&gt;&lt;hr&gt;&lt;font color=&quot;#b85450&quot;&gt;PK,FK&lt;/font&gt; &lt;b&gt;ticket_id&lt;/b&gt; &lt;font color=&quot;#777777&quot;&gt;BIGINT&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;PK&lt;/font&gt; &lt;b&gt;accessory_code&lt;/b&gt; &lt;font color=&quot;#777777&quot;&gt;VARCHAR(20)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; accessory_note &lt;font color=&quot;#777777&quot;&gt;VARCHAR(255)  (NULL)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="86" width="260" x="880" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="TXAm5ruBQp84zsHxxmX7-19" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=8;fontSize=10;fontFamily=Courier New;" value="&lt;b&gt;approval_request&lt;/b&gt;&lt;hr&gt;&lt;font color=&quot;#b85450&quot;&gt;PK&lt;/font&gt; &lt;b&gt;request_id&lt;/b&gt; &lt;font color=&quot;#777777&quot;&gt;BIGINT&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;FK&lt;/font&gt; ticket_id &lt;font color=&quot;#777777&quot;&gt;BIGINT&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; reason &lt;font color=&quot;#777777&quot;&gt;VARCHAR(500)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; requested_by &lt;font color=&quot;#777777&quot;&gt;INTEGER&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; requested_at &lt;font color=&quot;#777777&quot;&gt;TIMESTAMPTZ&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; approval_status &lt;font color=&quot;#777777&quot;&gt;VARCHAR(10)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; decided_by &lt;font color=&quot;#777777&quot;&gt;INTEGER  (NULL)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; decided_at &lt;font color=&quot;#777777&quot;&gt;TIMESTAMPTZ  (NULL)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; decision_reason &lt;font color=&quot;#777777&quot;&gt;VARCHAR(500)  (NULL)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="194" width="260" x="880" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="TXAm5ruBQp84zsHxxmX7-20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=8;fontSize=10;fontFamily=Courier New;" value="&lt;b&gt;ticket_status_log&lt;/b&gt;&lt;hr&gt;&lt;font color=&quot;#b85450&quot;&gt;PK&lt;/font&gt; &lt;b&gt;log_id&lt;/b&gt; &lt;font color=&quot;#777777&quot;&gt;BIGINT&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;FK&lt;/font&gt; ticket_id &lt;font color=&quot;#777777&quot;&gt;BIGINT&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; from_status &lt;font color=&quot;#777777&quot;&gt;VARCHAR(20)  (NULL)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; to_status &lt;font color=&quot;#777777&quot;&gt;VARCHAR(20)&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; changed_by &lt;font color=&quot;#777777&quot;&gt;INTEGER&lt;/font&gt;&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;&lt;/font&gt; changed_at &lt;font color=&quot;#777777&quot;&gt;TIMESTAMPTZ&lt;/font&gt;" vertex="1">
+          <mxGeometry height="140" width="260" x="880" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="TXAm5ruBQp84zsHxxmX7-21" edge="1" parent="1" source="TXAm5ruBQp84zsHxxmX7-15" style="endArrow=ERmany;startArrow=ERmandOne;endFill=0;startFill=0;html=1;strokeWidth=2;labelBackgroundColor=#ffffff;fontSize=9;" target="TXAm5ruBQp84zsHxxmX7-16" value="sở hữu">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TXAm5ruBQp84zsHxxmX7-22" edge="1" parent="1" source="TXAm5ruBQp84zsHxxmX7-16" style="endArrow=ERmany;startArrow=ERmandOne;endFill=0;startFill=0;html=1;strokeWidth=2;labelBackgroundColor=#ffffff;fontSize=9;" target="TXAm5ruBQp84zsHxxmX7-17" value="có">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TXAm5ruBQp84zsHxxmX7-23" edge="1" parent="1" source="TXAm5ruBQp84zsHxxmX7-17" style="endArrow=ERmany;startArrow=ERmandOne;endFill=0;startFill=0;html=1;strokeWidth=2;labelBackgroundColor=#ffffff;fontSize=9;" target="TXAm5ruBQp84zsHxxmX7-18" value="kèm theo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TXAm5ruBQp84zsHxxmX7-24" edge="1" parent="1" source="TXAm5ruBQp84zsHxxmX7-17" style="endArrow=ERmany;startArrow=ERmandOne;endFill=0;startFill=0;html=1;strokeWidth=2;labelBackgroundColor=#ffffff;fontSize=9;" target="TXAm5ruBQp84zsHxxmX7-19" value="có yêu cầu">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TXAm5ruBQp84zsHxxmX7-25" edge="1" parent="1" source="TXAm5ruBQp84zsHxxmX7-17" style="endArrow=ERmany;startArrow=ERmandOne;endFill=0;startFill=0;html=1;strokeWidth=2;labelBackgroundColor=#ffffff;fontSize=9;" target="TXAm5ruBQp84zsHxxmX7-20" value="ghi nhật ký">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="TXAm5ruBQp84zsHxxmX7-26" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;align=left;verticalAlign=top;spacing=8;fontSize=10;" value="&lt;b&gt;CHÚ THÍCH&lt;/b&gt;&lt;br&gt;• Mỗi khung là một bảng; dòng đầu là tên bảng. PK = khóa chính, FK = khóa ngoại, UQ = giá trị duy nhất, (NULL) = cho phép rỗng.&lt;br&gt;• Đường nối là quan hệ khóa ngoại; &quot;1&quot; ở phía bảng cha, &quot;N&quot; ở phía bảng con (một-nhiều). Nhãn trên đường nối là ý nghĩa quan hệ.&lt;br&gt;• Ngày hết hạn bảo hành không lưu thành cột: tính từ purchase_date + warranty_months (QT-05).&lt;br&gt;• service_center_id, received_by, requested_by, decided_by, changed_by là mã trung tâm/tài khoản; danh mục trung tâm và tài khoản nằm NGOÀI PHẠM VI ERD này." vertex="1">
+          <mxGeometry height="86" width="960" x="180" y="654" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
