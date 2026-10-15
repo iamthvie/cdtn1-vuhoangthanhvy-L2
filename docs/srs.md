@@ -61,13 +61,15 @@ Nhân viên tiếp nhận tra cứu lịch sử sửa chữa trước đó của
 * **FR9:** Hệ thống hiển thị cho nhân viên tiếp nhận danh sách phiếu do chính mình tiếp nhận trong ngày hiện tại.
 
 ### 3.2. User Story và mức MoSCoW
-* **US1 (MUST):** Là nhân viên tiếp nhận, tôi muốn nhập số serial/IMEI để xem thông tin thiết bị và danh sách phiếu bảo hành trước đó, để không phải hỏi lại khách hay gọi cửa hàng và lật sổ tìm lịch sử.
+### 3.2. User Story và mức MoSCoW
+* **US1 (MUST):** Là nhân viên tiếp nhận, tôi muốn nhập số serial/IMEI để xem thông tin thiết bị và danh sách phiếu bảo hành trước đó, để không phải hỏi lại khách hay gọi cửa hàng lật sổ tìm lịch sử.
 * **US2 (MUST):** Là nhân viên tiếp nhận, tôi muốn hệ thống tự cho biết thiết bị còn hay hết bảo hành dựa vào ngày mua và số tháng bảo hành, để không phải tự đoán và không ghi "còn bảo hành" khi chưa tra được ngày mua.
 * **US7 (MUST):** Là nhân viên tiếp nhận, tôi muốn ghi mô tả lỗi theo lời khách và lưu thành phiếu bảo hành mới, để yêu cầu được theo dõi trong hệ thống thay vì phiếu giấy.
-* **US3 (SHOULD):** Là nhân viên tiếp nhận, tôi muốn gửi yêu cầu phê duyệt kèm lý do tới quản lý trung tâm khi phiếu chưa xác minh bảo hành hoặc máy hết bảo hành cần xét ngoại lệ, và được cảnh báo sửa lặp lại khi thiết bị đã có từ 2 phiếu trước, để không tự quyết định thay quản lý và không tiếp tục sửa lần thứ ba mà chưa báo quản lý.
+* **US3 (SHOULD):** Là nhân viên tiếp nhận, tôi muốn gửi yêu cầu phê duyệt kèm lý do tới quản lý trung tâm khi phiếu chưa xác minh bảo hành hoặc máy hết bảo hành cần xét ngoại lệ, để không tự quyết định thay quản lý.
+* **US8 (SHOULD):** Là nhân viên tiếp nhận, tôi muốn được cảnh báo khi thiết bị đã có từ 2 phiếu bảo hành trước đó, để báo lên quản lý kiểm tra thay vì tiếp tục sửa lần thứ ba.
 * **US4 (SHOULD):** Là nhân viên tiếp nhận, tôi muốn chọn phụ kiện kèm theo từ danh mục thay vì gõ tay, để dữ liệu thống nhất và có căn cứ đối chiếu khi trả máy.
 * **US5 (SHOULD):** Là quản lý trung tâm, tôi muốn xem danh sách yêu cầu phê duyệt đang chờ theo thứ tự thời điểm gửi và phê duyệt hoặc từ chối từng yêu cầu kèm lý do, để xử lý kịp, khách không phải chờ lâu và quyết định được ghi lại, tránh tranh chấp.
-* **US6 (COULD):** Là nhân viên tiếp nhận, tôi muốn xem danh sách phiếu bảo hành do mình tiếp nhận trong ngày, để đối chiếu cuối ngày thay vì chép lại sang Excel (khoảng 40 phút mỗi ngày).
+* **US6 (COULD):** Là nhân viên tiếp nhận, tôi muốn xem danh sách phiếu bảo hành do mình tiếp nhận trong ngày, để đối chiếu cuối ca thay vì chép tay sang Excel.
 
 ---
 
@@ -108,5 +110,5 @@ Nhân viên tiếp nhận tra cứu lịch sử sửa chữa trước đó của
 | **FR5** | Gửi yêu cầu phê duyệt kèm lý do | US3 | UC5 | SHOULD |
 | **FR6** | Danh sách yêu cầu chờ phê duyệt cho quản lý | US5 | UC6 | SHOULD |
 | **FR7** | Phê duyệt hoặc từ chối kèm lý do | US5 | UC7 | SHOULD |
-| **FR8** | Cảnh báo thiết bị có từ 2 phiếu trước | US3 | UC1 | SHOULD |
+| **FR8** | Cảnh báo thiết bị có từ 2 phiếu trước | US8 | UC1 | SHOULD |
 | **FR9** | Danh sách phiếu đã tiếp nhận trong ngày | US6 | UC8 | COULD |

@@ -1,15 +1,12 @@
+// src/index.js
 const express = require('express');
 const app = express();
+const ticketRoutes = require('./routes/ticket.routes');
+
+app.use(express.json());
+app.use('/api', ticketRoutes);
+
 const PORT = process.env.PORT || 3000;
-
-app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'ok', 
-    message: 'L2 Smoke test passed successfully!',
-    student: 'Vu Hoang Thanh Vy' 
-  });
-});
-
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server CRM Luong L2 dang chay tai: http://localhost:${PORT}`);
 });
