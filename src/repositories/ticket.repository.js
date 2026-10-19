@@ -1,44 +1,71 @@
 // src/repositories/ticket.repository.js
-// Giả lập dữ liệu CSDL theo file seed để chạy thành công API Chặng 3 
+const { Pool } = require('pg');
 
-const mockTickets = [
-  {
-    ticket_id: 1,
-    ticket_code: "BH000123/2026",
-    device_id: 1,
-    issue_desc: "Màn hình chớp nháy liên tục",
-    warranty_status: "CON_BAO_HANH",
-    status: "MOI",
-    received_at: "2026-10-15T08:30:00Z"
-  },
-  {
-    ticket_id: 2,
-    ticket_code: "BH000124/2026",
-    device_id: 2,
-    issue_desc: "Máy không xác định ngày mua, mất nguồn",
-    warranty_status: "CHUA_XAC_MINH",
-    status: "MOI",
-    received_at: "2026-10-15T09:15:00Z"
-  }
-];
+// Khởi tạo connection pool lấy chuỗi DATABASE_URL từ file .env
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL || 'postgresql://postgres:1@localhost:5432/mekong_crm_l2'
+});
 
 class TicketRepository {
+  // 1. Lấy danh sách tất cả phiếu bảo hành từ PostgreSQL
   async findAll() {
-    return mockTickets;
+    const query = `
+      SELECT 
+        ticket_id, 
+        ticket_code, 
+        device_id, 
+        issue_desc, 
+        warranty_status, 
+        status, 
+        received_at 
+      FROM ticket 
+      WHERE is_deleted = false 
+      ORDER BY received_at DESC;
+    `;
+    const result = await pool.query(query);
+    return result.rows;
   }
 
+  // 2. Tìm kiếm phiếu theo số serial/IMEI của thiết bị
   async findBySerial(serialNo) {
-    return mockTickets.find(t => t.serial_no === serialNo) || null;
+    const query = `
+      SELECT t.* 
+      FROM ticket t
+      JOIN device d ON t.device_id = d.device_id
+      WHERE d.serial_no = $1 AND t.is_deleted = false;
+    `;
+    const result = await pool.query(query, [serialNo]);
+    return result.rows[0] || null;
   }
 
+  // 3. Tạo phiếu bảo hành mới vào PostgreSQL
   async create(ticketData) {
-    const newTicket = {
-      ticket_id: mockTickets.length + 1,
-      ...ticketData,
-      received_at: new Date().toISOString()
-    };
-    mockTickets.push(newTicket);
-    return newTicket;
+    const query = `
+      INSERT INTO ticket (
+        ticket_code, 
+        device_id, 
+        service_center_id, 
+        received_by, 
+        issue_desc, 
+        warranty_status, 
+        status, 
+        idempotency_key
+      )
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      RETURNING *;
+    `;
+    const values = [
+      ticketData.ticket_code,
+      ticketData.device_id || 1,
+      ticketData.service_center_id || 1,
+      ticketData.received_by || 1024,
+      ticketData.issue_desc,
+      ticketData.warranty_status || 'CON_BAO_HANH',
+      ticketData.status || 'MOI',
+      ticketData.idempotency_key || require('crypto').randomUUID()
+    ];
+    const result = await pool.query(query, values);
+    return result.rows[0];
   }
 }
 
