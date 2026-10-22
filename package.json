@@ -8,7 +8,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node src/index.js",
+    "test": "jest --detectOpenHandles"
   },
   "repository": {
     "type": "git",
@@ -25,5 +26,8 @@
   "dependencies": {
     "express": "^5.2.1",
     "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "jest": "^30.5.2"
   }
 }

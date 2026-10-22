@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mekong Mobile CRM - Quản Lý Bảo Hành</title>
+  <!-- Google Fonts & FontAwesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      /* Bảng màu pastel */
+      --color-deep-blue: #1d5285;
+      --color-lavender: #b39ddb;
+      --color-dusty-rose: #f48fb1;
+      --color-peach: #ffcc80;
+      
+      --primary: #2b5c8f;
+      --primary-hover: #1d436b;
+      --bg-gradient: linear-gradient(135deg, #c7d2fe 0%, #e0e7ff 35%, #fce7f3 70%, #ffedd5 100%);
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --success: #10b981;
+      --danger: #ef4444;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    
+    body { 
+      background: var(--bg-gradient); 
+      background-attachment: fixed;
+      color: var(--text-main); 
+      line-height: 1.5; 
+      padding: 40px 15px; 
+      min-height: 100vh;
+    }
+
+    .app-container { 
+      max-width: 980px; 
+      margin: 0 auto; 
+      background: var(--card-bg); 
+      backdrop-filter: blur(12px);
+      border-radius: 16px; 
+      box-shadow: 0 20px 40px -15px rgba(30, 41, 59, 0.12); 
+      border: 1px solid rgba(255, 255, 255, 0.8); 
+      overflow: hidden; 
+    }
+
+    /* Header với Gradient Hoàng Hôn Sunset */
+    .app-header { 
+      background: linear-gradient(120deg, #1d5285 0%, #6b5b95 50%, #c86b85 80%, #e6a15c 100%); 
+      color: white; 
+      padding: 28px 32px; 
+    }
+    .app-header h2 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
+    .app-header p { font-size: 0.875rem; color: rgba(255, 255, 255, 0.9); margin-top: 6px; }
+
+    /* Navigation Tabs Pastel */
+    .nav-tabs { display: flex; background: rgba(241, 245, 249, 0.8); padding: 8px; border-bottom: 1px solid var(--border-color); gap: 8px; }
+    .nav-tabs button { flex: 1; padding: 12px 16px; border: none; background: transparent; color: var(--text-muted); font-size: 0.875rem; font-weight: 600; cursor: pointer; border-radius: 10px; transition: all 0.25s ease; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .nav-tabs button:hover { color: var(--primary); background: rgba(255, 255, 255, 0.6); }
+    .nav-tabs button.active { background: white; color: var(--primary); box-shadow: 0 4px 12px rgba(29, 82, 133, 0.12); }
+
+    /* Content Area */
+    .content-area { padding: 32px; }
+    .screen { display: none; }
+    .screen.active { display: block; }
+    .screen-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 22px; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+
+    /* Table & Status Badge */
+    .table-responsive { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border-color); background: white; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem; }
+    th { background: #f8fafc; color: var(--text-muted); font-weight: 600; padding: 14px 18px; border-bottom: 1px solid var(--border-color); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+    td { padding: 16px 18px; border-bottom: 1px solid var(--border-color); color: var(--text-main); }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f1f5f9; }
+
+    .badge-status { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; background: #e0e7ff; color: #3730a3; }
+    .btn-detail { background: #f1f5f9; color: var(--primary); border: 1px solid #cbd5e1; padding: 7px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .btn-detail:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+    /* Form Design */
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 8px; color: var(--text-main); }
+    .form-group input, .form-group textarea { width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.875rem; outline: none; background: white; transition: all 0.2s; }
+    .form-group input:focus, .form-group textarea:focus { border-color: #6b5b95; box-shadow: 0 0 0 4px rgba(107, 91, 149, 0.15); }
+    
+    .btn-submit { background: linear-gradient(135deg, #1d5285 0%, #6b5b95 100%); color: white; border: none; padding: 12px 26px; font-size: 0.875rem; font-weight: 600; border-radius: 8px; cursor: pointer; transition: opacity 0.2s; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(29, 82, 133, 0.2); }
+    .btn-submit:hover { opacity: 0.92; }
+
+    /* States (Loading, Empty, Error) */
+    .state-loading { text-align: center; padding: 40px; color: #6b5b95; font-weight: 600; font-size: 0.95rem; }
+    .state-empty { background: #fff7ed; border: 1px solid #ffedd5; color: #c2410c; padding: 18px; border-radius: 10px; font-size: 0.875rem; display: flex; align-items: center; gap: 10px; }
+    .state-error { background: #fef2f2; border: 1px solid #fee2e2; color: #b91c1c; padding: 20px; border-radius: 10px; font-size: 0.875rem; }
+    .btn-retry { margin-top: 12px; background: #dc2626; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.8rem; }
+
+    /* Detail Card */
+    .detail-card { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; display: grid; gap: 14px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+    .detail-item { display: flex; justify-content: space-between; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; font-size: 0.875rem; }
+    .detail-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .detail-label { color: var(--text-muted); font-weight: 500; }
+    .detail-value { font-weight: 600; color: var(--text-main); }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header Hoàng Hôn -->
+    <header class="app-header">
+      <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Mekong Mobile CRM</h2>
+      <p>Hệ Thống Tiếp Nhận & Quản Lý Phiếu Bảo Hành (Luồng L2)</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button id="btn-tab-list" class="active" onclick="switchScreen('screen-list')">
+        <i class="fa-solid fa-list-check"></i> 1. Danh Sách Phiếu
+      </button>
+      <button id="btn-tab-create" onclick="switchScreen('screen-create')">
+        <i class="fa-solid fa-square-plus"></i> 2. Tiếp Nhận Phiếu Mới
+      </button>
+      <button id="btn-tab-detail" onclick="switchScreen('screen-detail')">
+        <i class="fa-solid fa-circle-info"></i> 3. Chi Tiết Phiếu
+      </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content-area">
+      
+      <!-- TAB 1: DANH SÁCH PHIẾU -->
+      <section id="screen-list" class="screen active">
+        <h3 class="screen-title"><i class="fa-solid fa-receipt" style="color:#1d5285;"></i> Danh Sách Phiếu Bảo Hành Hiện Có</h3>
+        <div id="list-state-container"></div>
+        <div class="table-responsive">
+          <table id="ticket-table" style="display: none;">
+            <thead>
+              <tr>
+                <th>Mã Phiếu</th>
+                <th>Thiết Bị ID</th>
+                <th>Mô Tả Lỗi</th>
+                <th>Số Điện Thoại (QT-15)</th>
+                <th>Trạng Thái</th>
+                <th>Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody id="ticket-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- TAB 2: TIẾP NHẬN PHIẾU MỚI -->
+      <section id="screen-create" class="screen">
+        <h3 class="screen-title"><i class="fa-solid fa-file-pen" style="color:#6b5b95;"></i> Tiếp Nhận Yêu Cầu Bảo Hành Mới (QT-06)</h3>
+        <div id="create-state-container"></div>
+        <form id="create-ticket-form" onsubmit="handleCreateTicket(event)">
+          <div class="form-group">
+            <label for="deviceId">Mã Thiết Bị (Device ID):</label>
+            <input type="number" id="deviceId" value="1" required placeholder="Nhập mã thiết bị...">
+          </div>
+          <div class="form-group">
+            <label for="issueDesc">Mô Tả Lỗi Chi Tiết (Tối thiểu 10 ký tự):</label>
+            <textarea id="issueDesc" rows="4" placeholder="Nhập tình trạng hư hỏng của thiết bị..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit"><i class="fa-solid fa-paper-plane"></i> Tạo Phiếu Bảo Hành</button>
+        </form>
+      </section>
+
+      <!-- TAB 3: CHI TIẾT PHIẾU -->
+      <section id="screen-detail" class="screen">
+        <h3 class="screen-title"><i class="fa-solid fa-circle-info" style="color:#c86b85;"></i> Thông Tin Chi Tiết Phiếu Bảo Hành</h3>
+        <div id="detail-content">
+          <p style="color: var(--text-muted); font-size: 0.875rem;">Vui lòng bấm nút <b>"Xem Chi Tiết"</b> ở một dòng phiếu bất kỳ trong danh sách để xem thông tin đầy đủ.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    function switchScreen(screenId) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
+      document.getElementById(screenId).classList.add('active');
+      
+      if (screenId === 'screen-list') {
+        document.getElementById('btn-tab-list').classList.add('active');
+        fetchTickets();
+      } else if (screenId === 'screen-create') {
+        document.getElementById('btn-tab-create').classList.add('active');
+      } else {
+        document.getElementById('btn-tab-detail').classList.add('active');
+      }
+    }
+
+    async function fetchTickets() {
+      const stateContainer = document.getElementById('list-state-container');
+      const table = document.getElementById('ticket-table');
+      const tbody = document.getElementById('ticket-table-body');
+
+      stateContainer.innerHTML = '<div class="state-loading"><i class="fa-solid fa-spinner fa-spin"></i> Đang kết nối CSDL PostgreSQL & tải danh sách phiếu...</div>';
+      table.style.display = 'none';
+
+      try {
+        const response = await fetch('/api/tickets');
+        if (!response.ok) throw new Error('Không thể lấy dữ liệu từ hệ thống!');
+        
+        const result = await response.json();
+        const tickets = result.data || [];
+
+        if (tickets.length === 0) {
+          stateContainer.innerHTML = `
+            <div class="state-empty">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span>Chưa có phiếu bảo hành nào trong CSDL PostgreSQL!</span>
+            </div>`;
+          return;
+        }
+
+        stateContainer.innerHTML = '';
+        table.style.display = 'table';
+        tbody.innerHTML = tickets.map(t => `
+          <tr>
+            <td><b style="color: var(--primary);">${t.ticketCode}</b></td>
+            <td>${t.deviceId}</td>
+            <td>${t.issueDesc}</td>
+            <td><code>${t.customerPhone || 'N/A'}</code></td>
+            <td><span class="badge-status"><i class="fa-solid fa-check" style="margin-right:4px;"></i> ${t.status}</span></td>
+            <td>
+              <button class="btn-detail" onclick="viewDetail('${t.ticketCode}', ${t.deviceId}, '${t.issueDesc}', '${t.customerPhone}')">
+                <i class="fa-solid fa-eye"></i> Xem Chi Tiết
+              </button>
+            </td>
+          </tr>
+        `).join('');
+
+      } catch (err) {
+        stateContainer.innerHTML = `
+          <div class="state-error">
+            <i class="fa-solid fa-circle-xmark"></i> <b>Lỗi Kết Nối Máy Chủ!</b><br>
+            Chi tiết: ${err.message}<br>
+            <button class="btn-retry" onclick="fetchTickets()"><i class="fa-solid fa-rotate-right"></i> Thử lại</button>
+          </div>`;
+      }
+    }
+
+    async function handleCreateTicket(event) {
+      event.preventDefault();
+      const stateContainer = document.getElementById('create-state-container');
+      const deviceId = document.getElementById('deviceId').value;
+      const issueDesc = document.getElementById('issueDesc').value;
+
+      stateContainer.innerHTML = '<div class="state-loading"><i class="fa-solid fa-spinner fa-spin"></i> Đang ghi dữ liệu vào PostgreSQL...</div>';
+
+      try {
+        const response = await fetch('/api/tickets', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ deviceId: Number(deviceId), issueDesc })
+        });
+
+        const resData = await response.json();
+
+        if (!response.ok) {
+          const msg = resData.fields ? Object.values(resData.fields).join(', ') : resData.message;
+          throw new Error(msg);
+        }
+
+        stateContainer.innerHTML = '<div style="color: var(--success); font-weight: 600; margin-bottom: 15px; font-size:0.875rem;"><i class="fa-solid fa-circle-check"></i> Tạo phiếu bảo hành thành công!</div>';
+        document.getElementById('issueDesc').value = '';
+        setTimeout(() => switchScreen('screen-list'), 1000);
+
+      } catch (err) {
+        stateContainer.innerHTML = `<div class="state-error" style="padding:12px; margin-bottom:15px;"><i class="fa-solid fa-triangle-exclamation"></i> Lỗi: ${err.message}</div>`;
+      }
+    }
+
+    function viewDetail(code, deviceId, desc, phone) {
+      switchScreen('screen-detail');
+      document.getElementById('detail-content').innerHTML = `
+        <div class="detail-card">
+          <div class="detail-item">
+            <span class="detail-label">Mã Phiếu Bảo Hành:</span>
+            <span class="detail-value" style="color: var(--primary);">${code}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Thiết Bị ID:</span>
+            <span class="detail-value">${deviceId}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Mô Tả Lỗi Tình Trạng:</span>
+            <span class="detail-value">${desc}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Số Điện Thoại Khách Hàng (QT-15):</span>
+            <span class="detail-value"><code>${phone || 'Chưa cập nhật'}</code></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Trạng Thái Bảo Hành:</span>
+            <span class="badge-status">CON_BAO_HANH</span>
+          </div>
+        </div>
+      `;
+    }
+
+    fetchTickets();
+  </script>
+</body>
+</html>
