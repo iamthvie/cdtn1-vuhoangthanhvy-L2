@@ -34,6 +34,35 @@ class TicketService {
     }
     return deviceData;
   }
+
+  // Bổ sung hàm nghiệp vụ kiểm tra bảo hành phục vụ Unit Test
+  kiemTraConBaoHanh(device, checkDateStr) {
+    if (!device || !device.ngayMua) {
+      return {
+        conBaoHanh: null,
+        lyDo: 'CHUA_XAC_MINH_BAO_HANH'
+      };
+    }
+
+    const ngayMua = new Date(device.ngayMua);
+    const ngayKiemTra = new Date(checkDateStr);
+    const soThang = device.soThangBaoHanh || 12;
+
+    const hanBaoHanh = new Date(ngayMua);
+    hanBaoHanh.setMonth(hanBaoHanh.getMonth() + soThang);
+
+    if (ngayKiemTra <= hanBaoHanh) {
+      return {
+        conBaoHanh: true,
+        lyDo: 'CON_BAO_HANH'
+      };
+    } else {
+      return {
+        conBaoHanh: false,
+        lyDo: 'HET_BAO_HANH'
+      };
+    }
+  }
 }
 
 module.exports = new TicketService();
