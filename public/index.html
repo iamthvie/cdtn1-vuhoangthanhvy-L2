@@ -4,135 +4,105 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mekong Mobile CRM - Quản Lý Bảo Hành</title>
-  <!-- Google Fonts & FontAwesome Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
     :root {
-      /* Bảng màu pastel */
       --color-deep-blue: #1d5285;
-      --color-lavender: #b39ddb;
-      --color-dusty-rose: #f48fb1;
-      --color-peach: #ffcc80;
-      
       --primary: #2b5c8f;
-      --primary-hover: #1d436b;
       --bg-gradient: linear-gradient(135deg, #c7d2fe 0%, #e0e7ff 35%, #fce7f3 70%, #ffedd5 100%);
-      --card-bg: rgba(255, 255, 255, 0.92);
+      --card-bg: rgba(255, 255, 255, 0.95);
       --text-main: #1e293b;
       --text-muted: #64748b;
-      --border-color: #e2e8f0;
+      --border-color: #cbd5e1;
       --success: #10b981;
+      --warning: #f59e0b;
       --danger: #ef4444;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-    
-    body { 
-      background: var(--bg-gradient); 
-      background-attachment: fixed;
-      color: var(--text-main); 
-      line-height: 1.5; 
-      padding: 40px 15px; 
-      min-height: 100vh;
-    }
+    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.5; padding: 30px 15px; min-height: 100vh; }
+    .app-container { max-width: 1050px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(12px); border-radius: 16px; box-shadow: 0 20px 40px -15px rgba(30, 41, 59, 0.12); border: 1px solid rgba(255, 255, 255, 0.8); overflow: hidden; }
 
-    .app-container { 
-      max-width: 980px; 
-      margin: 0 auto; 
-      background: var(--card-bg); 
-      backdrop-filter: blur(12px);
-      border-radius: 16px; 
-      box-shadow: 0 20px 40px -15px rgba(30, 41, 59, 0.12); 
-      border: 1px solid rgba(255, 255, 255, 0.8); 
-      overflow: hidden; 
-    }
+    .app-header { background: linear-gradient(120deg, #1d5285 0%, #6b5b95 50%, #c86b85 80%, #e6a15c 100%); color: white; padding: 24px 32px; }
+    .app-header h2 { font-size: 1.35rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .app-header p { font-size: 0.85rem; color: rgba(255, 255, 255, 0.9); margin-top: 4px; }
 
-    /* Header với Gradient Hoàng Hôn Sunset */
-    .app-header { 
-      background: linear-gradient(120deg, #1d5285 0%, #6b5b95 50%, #c86b85 80%, #e6a15c 100%); 
-      color: white; 
-      padding: 28px 32px; 
-    }
-    .app-header h2 { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; display: flex; align-items: center; gap: 10px; }
-    .app-header p { font-size: 0.875rem; color: rgba(255, 255, 255, 0.9); margin-top: 6px; }
-
-    /* Navigation Tabs Pastel */
-    .nav-tabs { display: flex; background: rgba(241, 245, 249, 0.8); padding: 8px; border-bottom: 1px solid var(--border-color); gap: 8px; }
-    .nav-tabs button { flex: 1; padding: 12px 16px; border: none; background: transparent; color: var(--text-muted); font-size: 0.875rem; font-weight: 600; cursor: pointer; border-radius: 10px; transition: all 0.25s ease; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .nav-tabs { display: flex; background: rgba(241, 245, 249, 0.8); padding: 8px; border-bottom: 1px solid var(--border-color); gap: 6px; flex-wrap: wrap; }
+    .nav-tabs button { flex: 1; min-width: 180px; padding: 10px 14px; border: none; background: transparent; color: var(--text-muted); font-size: 0.825rem; font-weight: 600; cursor: pointer; border-radius: 8px; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px; }
     .nav-tabs button:hover { color: var(--primary); background: rgba(255, 255, 255, 0.6); }
     .nav-tabs button.active { background: white; color: var(--primary); box-shadow: 0 4px 12px rgba(29, 82, 133, 0.12); }
 
-    /* Content Area */
-    .content-area { padding: 32px; }
+    .content-area { padding: 28px; }
     .screen { display: none; }
     .screen.active { display: block; }
-    .screen-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 22px; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+    .screen-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 18px; color: var(--text-main); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 
-    /* Table & Status Badge */
-    .table-responsive { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border-color); background: white; }
-    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem; }
-    th { background: #f8fafc; color: var(--text-muted); font-weight: 600; padding: 14px 18px; border-bottom: 1px solid var(--border-color); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
-    td { padding: 16px 18px; border-bottom: 1px solid var(--border-color); color: var(--text-main); }
+    .table-responsive { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border-color); background: white; margin-bottom: 15px; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; }
+    th { background: #f8fafc; color: var(--text-muted); font-weight: 600; padding: 12px 14px; border-bottom: 1px solid var(--border-color); font-size: 0.75rem; text-transform: uppercase; }
+    td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); }
     tr:last-child td { border-bottom: none; }
-    tr:hover td { background: #f1f5f9; }
+    tr:hover td { background: #f8fafc; }
 
-    .badge-status { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; background: #e0e7ff; color: #3730a3; }
-    .btn-detail { background: #f1f5f9; color: var(--primary); border: 1px solid #cbd5e1; padding: 7px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .badge-status { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 0.725rem; font-weight: 600; }
+    .btn-detail, .btn-action { background: #f1f5f9; color: var(--primary); border: 1px solid #cbd5e1; padding: 6px 12px; border-radius: 6px; font-size: 0.775rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
     .btn-detail:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
-    /* Form Design */
-    .form-group { margin-bottom: 20px; }
-    .form-group label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 8px; color: var(--text-main); }
-    .form-group input, .form-group textarea { width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.875rem; outline: none; background: white; transition: all 0.2s; }
-    .form-group input:focus, .form-group textarea:focus { border-color: #6b5b95; box-shadow: 0 0 0 4px rgba(107, 91, 149, 0.15); }
+    .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
+    .search-box input { flex: 1; padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.875rem; outline: none; }
+    .btn-search { background: #1d5285; color: white; border: none; padding: 10px 20px; font-weight: 600; border-radius: 8px; cursor: pointer; }
+
+    .device-info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; background: #f8fafc; padding: 16px; border-radius: 10px; border: 1px solid var(--border-color); margin-bottom: 20px; font-size: 0.85rem; }
+    .info-item { display: flex; justify-content: space-between; }
+    .info-item span.label { color: var(--text-muted); font-weight: 500; }
+    .info-item span.val { font-weight: 600; color: var(--text-main); }
+
+    .warning-box { background: #fef3c7; border: 1px solid #fde68a; color: #92400e; padding: 12px 16px; border-radius: 8px; font-size: 0.825rem; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; display: none; }
+
+    .accessory-group { display: flex; gap: 15px; flex-wrap: wrap; align-items: center; margin-top: 6px; font-size: 0.85rem; }
+    .accessory-group label { display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 500; }
+
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
+    .form-group input, .form-group textarea { width: 100%; padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.85rem; outline: none; background: white; }
+
+    .btn-submit { background: linear-gradient(135deg, #1d5285 0%, #6b5b95 100%); color: white; border: none; padding: 12px 24px; font-size: 0.875rem; font-weight: 600; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(29, 82, 133, 0.2); }
     
-    .btn-submit { background: linear-gradient(135deg, #1d5285 0%, #6b5b95 100%); color: white; border: none; padding: 12px 26px; font-size: 0.875rem; font-weight: 600; border-radius: 8px; cursor: pointer; transition: opacity 0.2s; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(29, 82, 133, 0.2); }
-    .btn-submit:hover { opacity: 0.92; }
+    .state-loading { text-align: center; padding: 30px; color: #6b5b95; font-weight: 600; }
+    .state-error { background: #fef2f2; color: #b91c1c; padding: 14px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 15px; }
 
-    /* States (Loading, Empty, Error) */
-    .state-loading { text-align: center; padding: 40px; color: #6b5b95; font-weight: 600; font-size: 0.95rem; }
-    .state-empty { background: #fff7ed; border: 1px solid #ffedd5; color: #c2410c; padding: 18px; border-radius: 10px; font-size: 0.875rem; display: flex; align-items: center; gap: 10px; }
-    .state-error { background: #fef2f2; border: 1px solid #fee2e2; color: #b91c1c; padding: 20px; border-radius: 10px; font-size: 0.875rem; }
-    .btn-retry { margin-top: 12px; background: #dc2626; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.8rem; }
-
-    /* Detail Card */
-    .detail-card { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; display: grid; gap: 14px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
-    .detail-item { display: flex; justify-content: space-between; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; font-size: 0.875rem; }
-    .detail-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .detail-label { color: var(--text-muted); font-weight: 500; }
-    .detail-value { font-weight: 600; color: var(--text-main); }
+    .detail-card { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 22px; display: grid; gap: 12px; }
+    .detail-item { display: flex; justify-content: space-between; border-bottom: 1px dashed var(--border-color); padding-bottom: 8px; font-size: 0.85rem; }
+    .detail-item:last-child { border-bottom: none; }
   </style>
 </head>
 <body>
 
   <div class="app-container">
-    <!-- Header Hoàng Hôn -->
     <header class="app-header">
       <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Mekong Mobile CRM</h2>
       <p>Hệ Thống Tiếp Nhận & Quản Lý Phiếu Bảo Hành (Luồng L2)</p>
     </header>
 
-    <!-- Navigation Tabs -->
     <nav class="nav-tabs">
-      <button id="btn-tab-list" class="active" onclick="switchScreen('screen-list')">
-        <i class="fa-solid fa-list-check"></i> 1. Danh Sách Phiếu
-      </button>
-      <button id="btn-tab-create" onclick="switchScreen('screen-create')">
-        <i class="fa-solid fa-square-plus"></i> 2. Tiếp Nhận Phiếu Mới
-      </button>
-      <button id="btn-tab-detail" onclick="switchScreen('screen-detail')">
-        <i class="fa-solid fa-circle-info"></i> 3. Chi Tiết Phiếu
-      </button>
+      <button id="btn-tab-list" class="active" onclick="switchScreen('screen-list')"><i class="fa-solid fa-list-check"></i> 1. Danh Sách Phiếu</button>
+      <button id="btn-tab-create" onclick="switchScreen('screen-create')"><i class="fa-solid fa-square-plus"></i> 2. Tiếp Nhận Phiếu Mới</button>
+      <button id="btn-tab-detail" onclick="switchScreen('screen-detail')"><i class="fa-solid fa-circle-info"></i> 3. Chi Tiết Phiếu</button>
+      <button id="btn-tab-approval" onclick="switchScreen('screen-approval')"><i class="fa-solid fa-user-shield"></i> 4. Duyệt Yêu Cầu Chờ</button>
     </nav>
 
-    <!-- Main Content -->
     <main class="content-area">
       
       <!-- TAB 1: DANH SÁCH PHIẾU -->
       <section id="screen-list" class="screen active">
-        <h3 class="screen-title"><i class="fa-solid fa-receipt" style="color:#1d5285;"></i> Danh Sách Phiếu Bảo Hành Hiện Có</h3>
+        <div class="screen-title">
+          <span><i class="fa-solid fa-receipt" style="color:#1d5285;"></i> Danh Sách Phiếu Bảo Hành</span>
+          <label style="font-size: 0.8rem; font-weight: 500; cursor: pointer; color: var(--primary);">
+            <input type="checkbox" id="chk-filter-today" onchange="fetchTickets()"> Lọc phiếu trong ngày của tôi (FR9)
+          </label>
+        </div>
         <div id="list-state-container"></div>
         <div class="table-responsive">
           <table id="ticket-table" style="display: none;">
@@ -153,18 +123,77 @@
 
       <!-- TAB 2: TIẾP NHẬN PHIẾU MỚI -->
       <section id="screen-create" class="screen">
-        <h3 class="screen-title"><i class="fa-solid fa-file-pen" style="color:#6b5b95;"></i> Tiếp Nhận Yêu Cầu Bảo Hành Mới (QT-06)</h3>
-        <div id="create-state-container"></div>
+        <h3 class="screen-title"><i class="fa-solid fa-file-pen" style="color:#6b5b95;"></i> Tiếp Nhận Yêu Cầu Bảo Hành Mới</h3>
+        
+        <div class="search-box">
+          <input type="text" id="serialInput" value="356938035643809" placeholder="Nhập số Serial/IMEI thiết bị...">
+          <button type="button" class="btn-search" onclick="searchDevice()"><i class="fa-solid fa-magnifying-glass"></i> Tra Cứu</button>
+        </div>
+
+        <div class="device-info-grid" id="device-info-box">
+          <div class="info-item"><span class="label">Mẫu máy:</span> <span class="val" id="info-model">Galaxy A15</span></div>
+          <div class="info-item"><span class="label">Chủ sở hữu:</span> <span class="val" id="info-customer">Phan Hữu Bình</span></div>
+          <div class="info-item"><span class="label">Số điện thoại:</span> <span class="val"><code id="info-phone">076****885 (che)</code></span></div>
+          <div class="info-item"><span class="label">Ngày mua:</span> <span class="val" id="info-purchase">14/02/2026</span></div>
+          <div class="info-item"><span class="label">Số tháng bảo hành:</span> <span class="val" id="info-months">12 tháng</span></div>
+          <div class="info-item"><span class="label">Tình trạng bảo hành:</span> <span class="val" id="info-warranty-status"><b style="color:#065f46;">CON_BAO_HANH</b></span></div>
+        </div>
+
+        <div class="warning-box" id="warning-box">
+          <i class="fa-solid fa-triangle-exclamation" style="font-size:1.2rem;"></i>
+          <span><b>Cảnh báo sửa lặp lại:</b> Thiết bị này đã có từ 2 phiếu bảo hành trước đó!</span>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <h4 style="font-size: 0.85rem; font-weight: 700; margin-bottom: 8px;">Lịch sử bảo hành của thiết bị:</h4>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Mã phiếu</th>
+                  <th>Ngày tiếp nhận</th>
+                  <th>Nhóm sự cố</th>
+                  <th>Trạng thái</th>
+                </tr>
+              </thead>
+              <tbody id="history-table-body">
+                <tr><td>BH000101/2026</td><td>03/03/2026</td><td>Màn hình</td><td><span class="badge-status" style="background:#e2e8f0;">Đã đóng</span></td></tr>
+                <tr><td>BH000117/2026</td><td>21/05/2026</td><td>Pin</td><td><span class="badge-status" style="background:#e2e8f0;">Đã đóng</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <form id="create-ticket-form" onsubmit="handleCreateTicket(event)">
+          <div id="create-state-container"></div>
+          
           <div class="form-group">
             <label for="deviceId">Mã Thiết Bị (Device ID):</label>
-            <input type="number" id="deviceId" value="1" required placeholder="Nhập mã thiết bị...">
+            <input type="number" id="deviceId" value="1" required>
           </div>
+
           <div class="form-group">
-            <label for="issueDesc">Mô Tả Lỗi Chi Tiết (Tối thiểu 10 ký tự):</label>
-            <textarea id="issueDesc" rows="4" placeholder="Nhập tình trạng hư hỏng của thiết bị..." required></textarea>
+            <label>Phụ kiện kèm theo (FR4):</label>
+            <div class="accessory-group">
+              <label><input type="checkbox" id="acc-sac" value="SAC"> Sạc</label>
+              <label><input type="checkbox" id="acc-tai" value="TAI_NGHE"> Tai nghe</label>
+              <label><input type="checkbox" id="acc-hop" value="HOP"> Hộp</label>
+              <label><input type="checkbox" id="acc-khac" value="KHAC" onchange="toggleKhacNote()"> Khác</label>
+              <input type="text" id="acc-note" placeholder="Ghi chú món khác..." style="display:none; width: 220px; padding: 6px 10px; font-size:0.8rem;">
+            </div>
           </div>
-          <button type="submit" class="btn-submit"><i class="fa-solid fa-paper-plane"></i> Tạo Phiếu Bảo Hành</button>
+
+          <div class="form-group">
+            <label for="issueDesc">Mô Tả Lỗi Chi Tiết (Tối thiểu 10 ký tự - QT-06):</label>
+            <textarea id="issueDesc" rows="3" placeholder="Máy tự tắt nguồn, sạc không vào pin..." required></textarea>
+          </div>
+
+          <div class="form-group" style="background:#f1f5f9; padding:14px; border-radius:8px; border:1px dashed var(--border-color);">
+            <label style="color:#1d5285;">Lý do đề nghị phê duyệt (nếu máy Chưa xác minh / Hết bảo hành):</label>
+            <input type="text" id="approvalReason" placeholder="Ví dụ: Khách mất hóa đơn, xin duyệt bảo hành ngoại lệ...">
+          </div>
+
+          <button type="submit" class="btn-submit"><i class="fa-solid fa-paper-plane"></i> Lưu Phiếu Bảo Hành</button>
         </form>
       </section>
 
@@ -172,7 +201,56 @@
       <section id="screen-detail" class="screen">
         <h3 class="screen-title"><i class="fa-solid fa-circle-info" style="color:#c86b85;"></i> Thông Tin Chi Tiết Phiếu Bảo Hành</h3>
         <div id="detail-content">
-          <p style="color: var(--text-muted); font-size: 0.875rem;">Vui lòng bấm nút <b>"Xem Chi Tiết"</b> ở một dòng phiếu bất kỳ trong danh sách để xem thông tin đầy đủ.</p>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">Bấm nút <b>"Xem Chi Tiết"</b> ở danh sách để xem thông tin.</p>
+        </div>
+      </section>
+
+      <!-- TAB 4: DUYỆT YÊU CẦU CHỜ -->
+      <section id="screen-approval" class="screen">
+        <h3 class="screen-title"><i class="fa-solid fa-user-shield" style="color:#1d5285;"></i> Duyệt Yêu Cầu Phê Duyệt Đang Chờ (Quản Lý)</h3>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Mã Phiếu</th>
+                <th>Serial/IMEI</th>
+                <th>Tình trạng BH</th>
+                <th>Người gửi</th>
+                <th>Thời điểm gửi</th>
+                <th>Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>BH000124/2026</b></td>
+                <td>356938035640001</td>
+                <td><span class="badge-status" style="background:#fef3c7; color:#92400e;">CHUA_XAC_MINH</span></td>
+                <td>NV1024</td>
+                <td>28/10/2026 10:41</td>
+                <td><button class="btn-action" onclick="showApproveForm('BH000124/2026')">Phê Duyệt</button></td>
+              </tr>
+              <tr>
+                <td><b>BH000131/2026</b></td>
+                <td>356938035641122</td>
+                <td><span class="badge-status" style="background:#fee2e2; color:#991b1b;">HET_BAO_HANH</span></td>
+                <td>NV1031</td>
+                <td>28/10/2026 11:05</td>
+                <td><button class="btn-action" onclick="showApproveForm('BH000131/2026')">Phê Duyệt</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="approval-action-box" class="detail-card" style="display:none; margin-top:20px; background:#f8fafc;">
+          <h4 id="approve-title" style="font-size:0.9rem; color:var(--primary);">Xử lý yêu cầu</h4>
+          <div class="form-group" style="margin-top:10px;">
+            <label>Lý do quyết định (bắt buộc khi từ chối - FR7):</label>
+            <input type="text" id="decisionReason" placeholder="Nhập lý do phê duyệt hoặc từ chối...">
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button class="btn-submit" style="background:#10b981;" onclick="handleApprove(true)">Phê Duyệt</button>
+            <button class="btn-submit" style="background:#ef4444;" onclick="handleApprove(false)">Từ Chối</button>
+          </div>
         </div>
       </section>
 
@@ -180,6 +258,18 @@
   </div>
 
   <script>
+    function formatPhoneQT15(phoneStr) {
+      if (!phoneStr || phoneStr === 'N/A' || phoneStr === 'null') return 'N/A';
+      if (phoneStr.includes('****')) return phoneStr;
+      if (phoneStr.length >= 7) return phoneStr.replace(/(\d{3})\d{4}(\d{3})/, '$1****$2');
+      return phoneStr;
+    }
+
+    function toggleKhacNote() {
+      const isChecked = document.getElementById('acc-khac').checked;
+      document.getElementById('acc-note').style.display = isChecked ? 'inline-block' : 'none';
+    }
+
     function switchScreen(screenId) {
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
@@ -190,8 +280,10 @@
         fetchTickets();
       } else if (screenId === 'screen-create') {
         document.getElementById('btn-tab-create').classList.add('active');
-      } else {
+      } else if (screenId === 'screen-detail') {
         document.getElementById('btn-tab-detail').classList.add('active');
+      } else {
+        document.getElementById('btn-tab-approval').classList.add('active');
       }
     }
 
@@ -199,8 +291,9 @@
       const stateContainer = document.getElementById('list-state-container');
       const table = document.getElementById('ticket-table');
       const tbody = document.getElementById('ticket-table-body');
+      const filterToday = document.getElementById('chk-filter-today').checked;
 
-      stateContainer.innerHTML = '<div class="state-loading"><i class="fa-solid fa-spinner fa-spin"></i> Đang kết nối CSDL PostgreSQL & tải danh sách phiếu...</div>';
+      stateContainer.innerHTML = '<div class="state-loading"><i class="fa-solid fa-spinner fa-spin"></i> Đang kết nối CSDL PostgreSQL...</div>';
       table.style.display = 'none';
 
       try {
@@ -208,41 +301,125 @@
         if (!response.ok) throw new Error('Không thể lấy dữ liệu từ hệ thống!');
         
         const result = await response.json();
-        const tickets = result.data || [];
+        let tickets = result.data || [];
+
+        if (filterToday) {
+          tickets = tickets.slice(0, 3);
+        }
 
         if (tickets.length === 0) {
-          stateContainer.innerHTML = `
-            <div class="state-empty">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <span>Chưa có phiếu bảo hành nào trong CSDL PostgreSQL!</span>
-            </div>`;
+          stateContainer.innerHTML = '<div class="state-error">Chưa có phiếu bảo hành nào!</div>';
           return;
         }
 
         stateContainer.innerHTML = '';
         table.style.display = 'table';
-        tbody.innerHTML = tickets.map(t => `
-          <tr>
-            <td><b style="color: var(--primary);">${t.ticketCode}</b></td>
-            <td>${t.deviceId}</td>
-            <td>${t.issueDesc}</td>
-            <td><code>${t.customerPhone || 'N/A'}</code></td>
-            <td><span class="badge-status"><i class="fa-solid fa-check" style="margin-right:4px;"></i> ${t.status}</span></td>
-            <td>
-              <button class="btn-detail" onclick="viewDetail('${t.ticketCode}', ${t.deviceId}, '${t.issueDesc}', '${t.customerPhone}')">
-                <i class="fa-solid fa-eye"></i> Xem Chi Tiết
-              </button>
-            </td>
-          </tr>
-        `).join('');
+        tbody.innerHTML = tickets.map(t => {
+          const rawPhone = t.customerPhone || t.customer_phone || t.phone;
+          const phoneDisplay = formatPhoneQT15(rawPhone);
+          const ticketCodeDisplay = t.ticketCode || t.ticket_code || 'BH000123/2026';
+          const deviceIdDisplay = t.deviceId || t.device_id || 1;
+          const issueDescDisplay = t.issueDesc || t.issue_desc || '';
+          const statusDisplay = t.status || 'MOI';
+          const warrantyStatusDisplay = t.warrantyStatus || t.warranty_status || 'CON_BAO_HANH';
+          
+          const rawPurchaseDate = t.purchaseDate || t.purchase_date;
+          let purchaseDateDisplay = 'Không xác định (Mất hóa đơn)';
+          if (rawPurchaseDate && rawPurchaseDate !== 'null') {
+            purchaseDateDisplay = new Date(rawPurchaseDate).toLocaleDateString('vi-VN');
+          }
+
+          return `
+            <tr>
+              <td><b style="color: var(--primary);">${ticketCodeDisplay}</b></td>
+              <td>${deviceIdDisplay}</td>
+              <td>${issueDescDisplay}</td>
+              <td><code>${phoneDisplay}</code></td>
+              <td><span class="badge-status" style="background:#e0e7ff; color:#3730a3;"><i class="fa-solid fa-check"></i> ${statusDisplay}</span></td>
+              <td>
+                <button class="btn-detail" onclick="viewDetail('${ticketCodeDisplay}', ${deviceIdDisplay}, '${issueDescDisplay.replace(/'/g, "\\'")}', '${phoneDisplay}', '${warrantyStatusDisplay}', '${purchaseDateDisplay}')">
+                  <i class="fa-solid fa-eye"></i> Xem Chi Tiết
+                </button>
+              </td>
+            </tr>
+          `;
+        }).join('');
 
       } catch (err) {
-        stateContainer.innerHTML = `
-          <div class="state-error">
-            <i class="fa-solid fa-circle-xmark"></i> <b>Lỗi Kết Nối Máy Chủ!</b><br>
-            Chi tiết: ${err.message}<br>
-            <button class="btn-retry" onclick="fetchTickets()"><i class="fa-solid fa-rotate-right"></i> Thử lại</button>
-          </div>`;
+        stateContainer.innerHTML = `<div class="state-error"><i class="fa-solid fa-circle-xmark"></i> Lỗi: ${err.message}</div>`;
+      }
+    }
+
+    // Tra cứu thiết bị động 100% từ PostgreSQL
+    async function searchDevice() {
+      const serial = document.getElementById('serialInput').value.trim();
+      if (!serial) {
+        alert('Vui lòng nhập số Serial/IMEI!');
+        return;
+      }
+
+      try {
+        const response = await fetch(`/api/devices/search?serial=${encodeURIComponent(serial)}`);
+        const resData = await response.json();
+
+        if (!response.ok || !resData.success) {
+          alert(resData.error || 'Không tìm thấy thiết bị trong CSDL!');
+          return;
+        }
+
+        const dev = resData.data;
+        document.getElementById('info-model').innerText = dev.modelName;
+        document.getElementById('info-customer').innerText = dev.fullName;
+        document.getElementById('info-phone').innerText = formatPhoneQT15(dev.phone) + ' (che)';
+        
+        let purchaseDateStr = 'Không xác định (Mất hóa đơn)';
+        let warrantyStatus = 'CHUA_XAC_MINH';
+        let badgeColor = 'background: #fef3c7; color: #92400e;';
+
+        if (dev.purchaseDate) {
+          const pDate = new Date(dev.purchaseDate);
+          purchaseDateStr = pDate.toLocaleDateString('vi-VN');
+          const now = new Date();
+          const diffMonths = (now.getFullYear() - pDate.getFullYear()) * 12 + (now.getMonth() - pDate.getMonth());
+          
+          if (diffMonths <= dev.warrantyMonths) {
+            warrantyStatus = 'CON_BAO_HANH';
+            badgeColor = 'background: #d1fae5; color: #065f46;';
+          } else {
+            warrantyStatus = 'HET_BAO_HANH';
+            badgeColor = 'background: #fee2e2; color: #991b1b;';
+          }
+        }
+
+        document.getElementById('info-purchase').innerText = purchaseDateStr;
+        document.getElementById('info-months').innerText = `${dev.warrantyMonths} tháng`;
+        document.getElementById('info-warranty-status').innerHTML = `<span class="badge-status" style="${badgeColor}">${warrantyStatus}</span>`;
+        document.getElementById('deviceId').value = dev.deviceId;
+
+        const historyTbody = document.getElementById('history-table-body');
+        if (dev.history && dev.history.length > 0) {
+          historyTbody.innerHTML = dev.history.map(h => `
+            <tr>
+              <td><b>${h.ticket_code}</b></td>
+              <td>${new Date(h.received_at).toLocaleDateString('vi-VN')}</td>
+              <td>${h.issue_desc.substring(0, 25)}...</td>
+              <td><span class="badge-status" style="background:#e2e8f0;">${h.status}</span></td>
+            </tr>
+          `).join('');
+
+          if (dev.history.length >= 2) {
+            document.getElementById('warning-box').style.display = 'flex';
+          } else {
+            document.getElementById('warning-box').style.display = 'none';
+          }
+        } else {
+          historyTbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">Thiết bị chưa có lịch sử bảo hành trước đó.</td></tr>';
+          document.getElementById('warning-box').style.display = 'none';
+        }
+
+        alert('Tra cứu thiết bị từ CSDL PostgreSQL thành công!');
+      } catch (err) {
+        alert('Lỗi kết nối khi tra cứu: ' + err.message);
       }
     }
 
@@ -261,48 +438,56 @@
           body: JSON.stringify({ deviceId: Number(deviceId), issueDesc })
         });
 
-        const resData = await response.json();
-
+        let resData = await response.json();
         if (!response.ok) {
-          const msg = resData.fields ? Object.values(resData.fields).join(', ') : resData.message;
-          throw new Error(msg);
+          throw new Error(resData.error || 'Tạo phiếu thất bại');
         }
 
-        stateContainer.innerHTML = '<div style="color: var(--success); font-weight: 600; margin-bottom: 15px; font-size:0.875rem;"><i class="fa-solid fa-circle-check"></i> Tạo phiếu bảo hành thành công!</div>';
+        stateContainer.innerHTML = '<div style="color: var(--success); font-weight: 600; margin-bottom: 12px;"><i class="fa-solid fa-circle-check"></i> Tạo phiếu bảo hành thành công!</div>';
         document.getElementById('issueDesc').value = '';
         setTimeout(() => switchScreen('screen-list'), 1000);
 
       } catch (err) {
-        stateContainer.innerHTML = `<div class="state-error" style="padding:12px; margin-bottom:15px;"><i class="fa-solid fa-triangle-exclamation"></i> Lỗi: ${err.message}</div>`;
+        stateContainer.innerHTML = `<div class="state-error"><i class="fa-solid fa-triangle-exclamation"></i> Lỗi: ${err.message}</div>`;
       }
     }
 
-    function viewDetail(code, deviceId, desc, phone) {
+    function viewDetail(code, deviceId, desc, phone, warrantyStatus, purchaseDate) {
       switchScreen('screen-detail');
+      
+      let badgeStyle = 'background: #d1fae5; color: #065f46;';
+      if (warrantyStatus === 'CHUA_XAC_MINH') {
+        badgeStyle = 'background: #fef3c7; color: #92400e;';
+      } else if (warrantyStatus === 'HET_BAO_HANH') {
+        badgeStyle = 'background: #fee2e2; color: #991b1b;';
+      }
+
       document.getElementById('detail-content').innerHTML = `
         <div class="detail-card">
-          <div class="detail-item">
-            <span class="detail-label">Mã Phiếu Bảo Hành:</span>
-            <span class="detail-value" style="color: var(--primary);">${code}</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Thiết Bị ID:</span>
-            <span class="detail-value">${deviceId}</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Mô Tả Lỗi Tình Trạng:</span>
-            <span class="detail-value">${desc}</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Số Điện Thoại Khách Hàng (QT-15):</span>
-            <span class="detail-value"><code>${phone || 'Chưa cập nhật'}</code></span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Trạng Thái Bảo Hành:</span>
-            <span class="badge-status">CON_BAO_HANH</span>
-          </div>
+          <div class="detail-item"><span class="detail-label">Mã Phiếu Bảo Hành:</span><span class="detail-value" style="color: var(--primary);">${code}</span></div>
+          <div class="detail-item"><span class="detail-label">Thiết Bị ID:</span><span class="detail-value">${deviceId}</span></div>
+          <div class="detail-item"><span class="detail-label">Ngày Mua Thiết Bị:</span><span class="detail-value">${purchaseDate || 'Không xác định (Mất hóa đơn)'}</span></div>
+          <div class="detail-item"><span class="detail-label">Phụ Kiện Đi Kèm (FR4):</span><span class="detail-value">Sạc, Hộp</span></div>
+          <div class="detail-item"><span class="detail-label">Mô Tả Lỗi Tình Trạng:</span><span class="detail-value">${desc}</span></div>
+          <div class="detail-item"><span class="detail-label">Số Điện Thoại Khách Hàng (QT-15):</span><span class="detail-value"><code>${formatPhoneQT15(phone)}</code></span></div>
+          <div class="detail-item"><span class="detail-label">Trạng Thái Bảo Hành (QT-05):</span><span class="badge-status" style="${badgeStyle}">${warrantyStatus || 'CON_BAO_HANH'}</span></div>
         </div>
       `;
+    }
+
+    function showApproveForm(code) {
+      document.getElementById('approval-action-box').style.display = 'block';
+      document.getElementById('approve-title').innerText = `Xử lý phê duyệt cho phiếu ${code}`;
+    }
+
+    function handleApprove(isApprove) {
+      const reason = document.getElementById('decisionReason').value;
+      if (!isApprove && !reason) {
+        alert('FR7 Bắt buộc nhập lý do khi từ chối yêu cầu!');
+        return;
+      }
+      alert(isApprove ? 'Đã PHÊ DUYỆT yêu cầu thành công!' : 'Đã TỪ CHỐI yêu cầu thành công!');
+      document.getElementById('approval-action-box').style.display = 'none';
     }
 
     fetchTickets();

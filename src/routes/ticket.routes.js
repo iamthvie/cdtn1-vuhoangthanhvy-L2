@@ -2,49 +2,54 @@
 const express = require('express');
 const router = express.Router();
 const ticketService = require('../services/ticket.service');
-const { validateCreateTicket } = require('../validators/ticket.schema');
 
-// GET /api/tickets - Trả về dữ liệu + Xử lý trạng thái RỖNG ([])
-router.get('/tickets', async (req, res) => {
+// 1. API Lấy danh sách phiếu
+router.get('/tickets', async (req, res, next) => {
   try {
     const tickets = await ticketService.getAllTickets();
-    res.status(200).json({
-      status: 'success',
-      total: tickets.length,
-      data: tickets
-    });
-  } catch (error) {
-    res.status(500).json({
-      error: 'LOI_HE_THONG',
-      message: 'Không thể kết nối cơ sở dữ liệu. Vui lòng thử lại.',
-      details: error.message
-    });
+    res.json({ data: tickets });
+  } catch (err) {
+    next(err);
   }
 });
 
-// POST /api/tickets - Kiểm tra ranh giới bằng Validator
-router.post('/tickets', async (req, res) => {
+// 1.1 API Tra cứu thiết bị động theo Serial/IMEI
+router.get('/devices/search', async (req, res, next) => {
   try {
-    const validation = validateCreateTicket(req.body);
-    if (!validation.isValid) {
-      return res.status(422).json({
-        error: 'DU_LIEU_KHONG_HOP_LE',
-        message: 'Dữ liệu đầu vào không hợp lệ',
-        fields: validation.errors
-      });
+    const { serial } = req.query;
+    if (!serial) {
+      return res.status(400).json({ success: false, error: 'Vui lòng cung cấp số Serial hoặc IMEI' });
+    }
+    const result = await ticketService.searchDeviceBySerial(serial);
+    res.json({ success: true, data: result });
+  } catch (err) {
+    res.status(404).json({ success: false, error: err.message });
+  }
+});
+
+// 2. API Tạo phiếu bảo hành mới
+router.post('/tickets', async (req, res, next) => {
+  try {
+    const deviceId = req.body.deviceId || req.body.device_id;
+    const issueDesc = req.body.issueDesc || req.body.issue_desc;
+
+    if (!issueDesc || issueDesc.trim().length < 10) {
+      return res.status(400).json({ error: 'Mô tả sự cố phải từ 10 ký tự trở lên' });
     }
 
-    const newTicket = await ticketService.createTicket(req.body);
-    res.status(201).json({
-      status: 'success',
-      data: newTicket
+    if (!deviceId) {
+      return res.status(400).json({ error: 'Vui lòng nhập Mã Thiết Bị (Device ID)' });
+    }
+
+    const created = await ticketService.createTicket({
+      device_id: Number(deviceId),
+      issue_desc: issueDesc.trim(),
+      ticket_code: `BH${Math.floor(100000 + Math.random() * 900000)}/2026`
     });
-  } catch (error) {
-    res.status(500).json({
-      error: 'LOI_HE_THONG',
-      message: 'Hệ thống đang gặp sự cố khi lưu phiếu',
-      details: error.message
-    });
+
+    res.status(201).json({ data: created });
+  } catch (err) {
+    res.status(500).json({ error: err.message || 'Lỗi hệ thống khi tạo phiếu' });
   }
 });
 

@@ -9,7 +9,7 @@ describe('Test Hop dong du lieu - toTicketView', () => {
       device_id: 2,
       issue_desc: 'Màn hình bị sọc',
       warranty_status: 'CON_BAO_HANH',
-      status: 'MOI',
+      status: 'MỚI',
       received_at: '2026-10-15T08:30:00Z'
     };
 
