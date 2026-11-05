@@ -1,7 +1,6 @@
  node import_csv.js;ticket_code;customer_id;serial_no;product_id;center_id;issue_desc;category_id;priority;status;technician_id;received_at;due_date;closed_at;is_warranty
 1;BH-000001/2025;14159;SN541017338391;21;5;kh noi cam sac khong vao dien bi tu tuan truoc;3;TRUNG_BINH;DA_PHAN_CONG;31;23/02/2025 12:30;26/02/2025 12:30;;TRUE
-2;BH-000002/2025;22536;SN171793448269;149;2;cảm ứng chỗ được chỗ không đã thử khởi động lại không được
-;1;CAO;DANG_XU_LY;5;01/09/2025 16:15;02/09/2025 16:15;;TRUE
+2;BH-000002/2025;22536;SN171793448269;149;2;c?m ?ng ch? ???c ch? kh�ng ?� th? kh?i ??ng l?i kh�ng ???c;1;CAO;DANG_XU_LY;5;01/09/2025 16:15;02/09/2025 16:15;;TRUE
 3;BH-000003/2026;8568;SN353496038427;226;6;kh�ch b�o m�y t? t?t khi c�n 30% pin m?i b? 2 ng�y nay;2;TRUNG_BINH;DA_DONG;13;23/08/2026 12:15;26/08/2026 12:15;26/08/2026 1:00;TRUE
 4;BH-000004/2024;9206;SN201103205275;244;1;khach hang phan anh camera mo len bi den man bi tu tuan truoc;4;THAP;DA_DONG;20;12/09/2024 10:00;17/09/2024 10:00;16/09/2024 10:53;TRUE
 5;BH-000005/2025;21320;SN667990926428;264;1;kh�ch b�o m�n h�nh b? �m v�ng m?t g�c m?i b? 2 ng�y nay;1;THAP;HOAN_TAT;20;16/04/2025 16:00;21/04/2025 16:00;;TRUE
