@@ -13,7 +13,7 @@ Báo cáo này ghi nhận các bug thực tế đã phát hiện và xử lý tr
 5. **Nguyên nhân**: Một số dòng trong file CSV có cột `product_id` / `device_id` bị trống hoặc chứa ký tự trắng, hàm `Number()` trả về giá trị `NaN`, câu lệnh SQL truyền `NaN` vào cột kiểu `INTEGER` của PostgreSQL
 6. **Cách sửa**: Thay thế bằng hàm `parseInt(value) || 1` để lọc an toàn, nếu không phải số hợp lệ sẽ tự động nhận giá trị mặc định là `1`
 7. **Commit và xác nhận**: 
-   - Link commit: `https://github.com/iamthvie/cdtn1-vuhoangthanhvy-L2/commit/<mã_commit_của_em>`
+   - Link commit: `https://github.com/iamthvie/cdtn1-vuhoangthanhvy-L2/commit/7c7c6f58319fd935310c8c065dac72d61cbce86e`
    - Kết quả: Chạy lại `node import_csv.js` thành công 100%, không còn lỗi `NaN`, kiểm tra `npm test` đạt 5/5 PASS
 
 ---
@@ -27,7 +27,7 @@ Báo cáo này ghi nhận các bug thực tế đã phát hiện và xử lý tr
 5. **Nguyên nhân**: Tầng Controller và Service chưa kiểm tra điều kiện `trim().length` trước khi gọi câu lệnh INSERT vào cơ sở dữ liệu
 6. **Cách sửa**: Bổ sung hàm validate độ dài `issue_desc` (bắt buộc từ 10 đến 1000 ký tự theo đặc tả SRS) ngay tại tầng validation trước khi xử lý service
 7. **Commit và xác nhận**: 
-   - Link commit: `https://github.com/iamthvie/cdtn1-vuhoangthanhvy-L2/commit/<mã_commit_của_em>`
+   - Link commit: `https://github.com/iamthvie/cdtn1-vuhoangthanhvy-L2/commit/7c7c6f58319fd935310c8c065dac72d61cbce86e`
    - Kết quả: Chạy lại `TC-04`, hệ thống trả về đúng mã `400 Bad Request`, không sinh bản ghi rác trong CSDL
 
 ---
@@ -41,5 +41,5 @@ Báo cáo này ghi nhận các bug thực tế đã phát hiện và xử lý tr
 5. **Nguyên nhân**: Tầng Repository lấy thẳng dữ liệu cột `phone` từ bảng `customer` mà không qua hàm xử lý ẩn/che chuỗi ký tự tại tầng Controller/DTO
 6. **Cách sửa**: Viết hàm `maskPhone()` tại tầng contract/view để tự động thay thế các ký tự giữa bằng dấu sao (`*`) khi trả về cho vai trò nhân viên
 7. **Commit và xác nhận**: 
-   - Link commit: `https://github.com/iamthvie/cdtn1-vuhoangthanhvy-L2/commit/<mã_commit_của_em>`
+   - Link commit: `https://github.com/iamthvie/cdtn1-vuhoangthanhvy-L2/commit/7c7c6f58319fd935310c8c065dac72d61cbce86e`
    - Kết quả: Chạy lại `TC-07`, hệ thống trả về chính xác định dạng `076****885 (che)`, vượt qua kiểm thử bảo mật

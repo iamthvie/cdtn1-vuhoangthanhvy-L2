@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng Nhập - Mekong Mobile CRM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2b5c8f;
+      --bg-gradient: linear-gradient(135deg, #c7d2fe 0%, #e0e7ff 35%, #fce7f3 70%, #ffedd5 100%);
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #cbd5e1;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+    .login-card { max-width: 400px; width: 90%; background: var(--card-bg); backdrop-filter: blur(12px); border-radius: 16px; box-shadow: 0 20px 40px -15px rgba(30, 41, 59, 0.12); border: 1px solid rgba(255, 255, 255, 0.8); padding: 32px; text-align: center; }
+    .form-group { margin-bottom: 18px; text-align: left; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
+    .form-group input, .form-group select { width: 100%; padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.85rem; outline: none; background: white; }
+    .btn-submit { background: linear-gradient(135deg, #1d5285 0%, #6b5b95 100%); color: white; border: none; padding: 12px 24px; font-size: 0.875rem; font-weight: 600; border-radius: 8px; cursor: pointer; width: 100%; box-shadow: 0 4px 12px rgba(29, 82, 133, 0.2); transition: opacity 0.2s; }
+    .btn-submit:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <div style="margin-bottom: 24px;">
+      <h2 style="color: var(--primary); font-size: 1.4rem; font-weight: 700; margin-bottom: 6px;"><i class="fa-solid fa-shield-halved"></i> Đăng Nhập CRM</h2>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">Mekong Mobile CRM - Quản Lý Bảo Hành</p>
+    </div>
+
+    <form onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label>Chọn vai trò / Tài khoản:</label>
+        <select id="roleSelect" onchange="fillDefaultAccount()">
+          <option value="staff">Nhân viên tiếp nhận (NV1024)</option>
+          <option value="manager">Quản lý hệ thống (Manager)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Tên đăng nhập:</label>
+        <input type="text" id="username" value="nv1024" required>
+      </div>
+
+      <div class="form-group">
+        <label>Mật khẩu:</label>
+        <input type="password" id="password" value="123456" required>
+      </div>
+
+      <button type="submit" class="btn-submit"><i class="fa-solid fa-right-to-bracket"></i> Đăng Nhập Hệ Thống</button>
+    </form>
+  </div>
+
+  <script>
+    // Tự động đổi tên tài khoản mẫu theo vai trò được chọn
+    function fillDefaultAccount() {
+      const role = document.getElementById('roleSelect').value;
+      const userField = document.getElementById('username');
+      if (role === 'manager') {
+        userField.value = 'manager01';
+      } else {
+        userField.value = 'nv1024';
+      }
+    }
+
+    // Xử lý sự kiện đăng nhập và lưu phân quyền
+    function handleLogin(e) {
+      e.preventDefault();
+      const role = document.getElementById('roleSelect').value;
+      const username = document.getElementById('username').value.trim();
+
+      // Lưu thông tin vai trò vào sessionStorage của trình duyệt
+      sessionStorage.setItem('currentRole', role);
+      sessionStorage.setItem('currentUsername', username);
+
+      // Chuyển hướng chung sang màn hình quản lý danh sách phiếu (index.html)
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

@@ -27,6 +27,30 @@ class TicketService {
     return toTicketView(created);
   }
 
+  // ==========================================
+  // BỔ SUNG ĐỂ ĐẠT CHUẨN CRUD (Khắc phục lỗi S1)
+  // ==========================================
+  
+  // 1. Cập nhật thông tin / trạng thái phiếu bảo hành (Update)
+  async updateTicket(id, data) {
+    const updated = await ticketRepo.update(id, data);
+    if (!updated) {
+      throw new Error('Không tìm thấy phiếu bảo hành cần cập nhật trong CSDL!');
+    }
+    return toTicketView(updated);
+  }
+
+  // 2. Xóa phiếu bảo hành (Delete)
+  async deleteTicket(id) {
+    const deleted = await ticketRepo.delete(id);
+    if (!deleted) {
+      throw new Error('Không tìm thấy phiếu bảo hành cần xóa trong CSDL!');
+    }
+    return { message: 'Xóa phiếu thành công', id };
+  }
+
+  // ==========================================
+
   async searchDeviceBySerial(serial) {
     const deviceData = await ticketRepo.findDeviceBySerial(serial);
     if (!deviceData) {
@@ -35,7 +59,7 @@ class TicketService {
     return deviceData;
   }
 
-  // Bổ sung hàm nghiệp vụ kiểm tra bảo hành phục vụ Unit Test
+  // Hàm nghiệp vụ kiểm tra bảo hành phục vụ Unit Test
   kiemTraConBaoHanh(device, checkDateStr) {
     if (!device || !device.ngayMua) {
       return {
@@ -63,6 +87,7 @@ class TicketService {
       };
     }
   }
+  
 }
 
 module.exports = new TicketService();

@@ -42,6 +42,38 @@ class TicketRepository {
     return result.rows[0];
   }
 
+  // ==========================================
+  // BỔ SUNG UPDATE & DELETE (Khắc phục lỗi S1)
+  // ==========================================
+
+  async update(ticketId, data) {
+    const query = `
+      UPDATE ticket 
+      SET status = COALESCE($1, status), 
+          issue_desc = COALESCE($2, issue_desc),
+          warranty_status = COALESCE($3, warranty_status)
+      WHERE ticket_id = $4 AND is_deleted = FALSE
+      RETURNING *;
+    `;
+    const values = [data.status, data.issue_desc, data.warranty_status, ticketId];
+    const result = await pool.query(query, values);
+    return result.rows[0];
+  }
+
+  async delete(ticketId) {
+    // Sử dụng cơ chế xóa mềm (Soft Delete) khớp với điều kiện WHERE t.is_deleted = FALSE ở câu lệnh findAll
+    const query = `
+      UPDATE ticket 
+      SET is_deleted = TRUE 
+      WHERE ticket_id = $1 
+      RETURNING *;
+    `;
+    const result = await pool.query(query, [ticketId]);
+    return result.rows[0];
+  }
+
+  // ==========================================
+
   async findDeviceBySerial(serial) {
     const query = `
       SELECT 

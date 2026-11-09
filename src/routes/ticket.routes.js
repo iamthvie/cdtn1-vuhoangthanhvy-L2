@@ -52,5 +52,25 @@ router.post('/tickets', async (req, res, next) => {
     res.status(500).json({ error: err.message || 'Lỗi hệ thống khi tạo phiếu' });
   }
 });
+// 3. API Cập nhật phiếu bảo hành (Update - PUT)
+router.put('/tickets/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const updated = await ticketService.updateTicket(id, req.body);
+    res.json({ success: true, message: 'Cập nhật phiếu bảo hành thành công', data: updated });
+  } catch (err) {
+    res.status(400).json({ success: false, error: err.message });
+  }
+});
 
+// 4. API Xóa phiếu bảo hành (Delete - DELETE)
+router.delete('/tickets/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const result = await ticketService.deleteTicket(id);
+    res.json({ success: true, message: 'Xóa phiếu thành công', data: result });
+  } catch (err) {
+    res.status(404).json({ success: false, error: err.message });
+  }
+});
 module.exports = router;

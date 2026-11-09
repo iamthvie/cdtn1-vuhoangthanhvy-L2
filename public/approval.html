@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Phê Duyệt - Mekong Mobile CRM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #2b5c8f;
+      --bg-gradient: linear-gradient(135deg, #c7d2fe 0%, #e0e7ff 35%, #fce7f3 70%, #ffedd5 100%);
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #cbd5e1;
+      --success: #10b981;
+      --danger: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background: var(--bg-gradient); background-attachment: fixed; color: var(--text-main); line-height: 1.5; padding: 30px 15px; min-height: 100vh; }
+    .app-container { max-width: 1050px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(12px); border-radius: 16px; box-shadow: 0 20px 40px -15px rgba(30, 41, 59, 0.12); border: 1px solid rgba(255, 255, 255, 0.8); overflow: hidden; }
+    .app-header { background: linear-gradient(120deg, #1d5285 0%, #6b5b95 50%, #c86b85 80%, #e6a15c 100%); color: white; padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; }
+    .content-area { padding: 28px; }
+    .table-responsive { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border-color); background: white; margin-bottom: 15px; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; }
+    th { background: #f8fafc; color: var(--text-muted); font-weight: 600; padding: 12px 14px; border-bottom: 1px solid var(--border-color); font-size: 0.75rem; text-transform: uppercase; }
+    td { padding: 12px 14px; border-bottom: 1px solid var(--border-color); }
+    .badge-status { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 0.725rem; font-weight: 600; }
+    .btn-action { background: #f1f5f9; color: var(--primary); border: 1px solid #cbd5e1; padding: 6px 12px; border-radius: 6px; font-size: 0.775rem; font-weight: 600; cursor: pointer; }
+    .detail-card { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 22px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
+    .form-group input { width: 100%; padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.85rem; outline: none; }
+    .btn-submit { color: white; border: none; padding: 10px 20px; font-size: 0.85rem; font-weight: 600; border-radius: 8px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <!-- Modal thông báo tùy chỉnh ở giữa màn hình -->
+  <div id="custom-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9999; justify-content:center; align-items:center;">
+    <div style="background:white; padding:24px; border-radius:12px; max-width:400px; width:90%; box-shadow:0 10px 25px rgba(0,0,0,0.2); text-align:center;">
+      <h3 id="modal-title" style="margin-bottom:12px; color:var(--primary); font-size:1.1rem;"><i class="fa-solid fa-circle-info"></i> Thông báo</h3>
+      <p id="modal-message" style="margin-bottom:15px; font-size:0.9rem; color:var(--text-main);"></p>
+      <button id="modal-btn-ok" class="btn-submit" style="background:var(--primary); padding:8px 20px;">OK</button>
+    </div>
+  </div>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div>
+        <h2><i class="fa-solid fa-user-shield"></i> Quản Lý Phê Duyệt Yêu Cầu</h2>
+        <p style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.9); margin-top: 4px;">Dành riêng cho Quản lý (Quy tắc QT-05, BR-A1, FR7)</p>
+      </div>
+      <button onclick="window.location.href='index.html'" style="background:rgba(255,255,255,0.2); border:1px solid white; color:white; padding:6px 12px; border-radius:6px; cursor:pointer; font-size:0.85rem;"><i class="fa-solid fa-arrow-left"></i> Quay lại Danh Sách</button>
+    </header>
+
+    <main class="content-area">
+      <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 18px; color: var(--text-main);">Danh Sách Yêu Cầu Chờ Phê Duyệt (FR6)[cite: 2]</h3>
+      
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Mã Phiếu</th>
+              <th>Serial/IMEI</th>
+              <th>Tình trạng BH (QT-05)</th>
+              <th>Người gửi</th>
+              <th>Thời điểm gửi</th>
+              <th>Thao Tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>BH000124/2026</b></td>
+              <td>356938035640001</td>
+              <td><span class="badge-status" style="background:#fef3c7; color:#92400e;">CHUA_XAC_MINH</span></td>
+              <td>NV1024</td>
+              <td>28/10/2026 10:41</td>
+              <td><button class="btn-action" onclick="showApproveForm('BH000124/2026')">Xử Lý</button></td>
+            </tr>
+            <tr>
+              <td><b>BH000131/2026</b></td>
+              <td>356938035641122</td>
+              <td><span class="badge-status" style="background:#fee2e2; color:#991b1b;">HET_BAO_HANH</span></td>
+              <td>NV1031</td>
+              <td>28/10/2026 11:05</td>
+              <td><button class="btn-action" onclick="showApproveForm('BH000131/2026')">Xử Lý</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="approval-action-box" class="detail-card" style="display:none; margin-top:20px; background:#f8fafc;">
+        <h4 id="approve-title" style="font-size:0.95rem; color:var(--primary); margin-bottom: 12px;">Xử lý yêu cầu</h4>
+        <div class="form-group">
+          <label>Lý do quyết định (Bắt buộc khi từ chối - FR7)[cite: 2]:</label>
+          <input type="text" id="decisionReason" placeholder="Nhập lý do phê duyệt hoặc từ chối ngoại lệ...">
+        </div>
+        <div style="display:flex; gap:10px;">
+          <button class="btn-submit" style="background:var(--success);" onclick="handleApprove(true)">Phê Duyệt</button>
+          <button class="btn-submit" style="background:var(--danger);" onclick="handleApprove(false)">Từ Chối</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function showCustomModal(title, message, callback = null) {
+      const modal = document.getElementById('custom-modal');
+      document.getElementById('modal-title').innerHTML = `<i class="fa-solid fa-circle-info"></i> ${title}`;
+      document.getElementById('modal-message').innerText = message;
+      modal.style.display = 'flex';
+      const btnOk = document.getElementById('modal-btn-ok');
+      const newBtnOk = btnOk.cloneNode(true);
+      btnOk.parentNode.replaceChild(newBtnOk, btnOk);
+      newBtnOk.onclick = () => {
+        modal.style.display = 'none';
+        if (callback) callback();
+      };
+    }
+
+    // Kiểm tra bảo mật chống lén truy cập URL khi chưa đăng nhập quyền Quản lý[cite: 2]
+    const role = sessionStorage.getItem('currentRole');
+    if (!role || (role !== 'manager' && role !== 'admin')) {
+      alert('Truy cập bị từ chối: Trang này chỉ dành cho Quản lý hệ thống!');
+      window.location.href = 'index.html';
+    }
+
+    function showApproveForm(code) {
+      document.getElementById('approval-action-box').style.display = 'block';
+      document.getElementById('approve-title').innerText = `Xử lý phê duyệt cho phiếu ${code}`;
+    }
+
+    function handleApprove(isApprove) {
+      const reason = document.getElementById('decisionReason').value.trim();
+      if (!isApprove && !reason) {
+        showCustomModal("Cảnh báo", "FR7: Bắt buộc nhập lý do khi từ chối yêu cầu!");
+        return;
+      }
+      showCustomModal("Thành công", isApprove ? "Đã PHÊ DUYỆT yêu cầu thành công!" : "Đã TỪ CHỐI yêu cầu thành công!", () => {
+        document.getElementById('approval-action-box').style.display = 'none';
+        document.getElementById('decisionReason').value = '';
+      });
+    }
+  </script>
+</body>
+</html>
