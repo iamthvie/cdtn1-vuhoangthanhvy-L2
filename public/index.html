@@ -142,7 +142,7 @@
         <h3 class="screen-title"><i class="fa-solid fa-file-pen" style="color:#6b5b95;"></i> Tiếp Nhận Yêu Cầu Bảo Hành Mới</h3>
         
         <div class="search-box">
-          <input type="text" id="serialInput" value="356938035643809" placeholder="Nhập số Serial/IMEI thiết bị...">
+          <input type="text" id="serialInput" value="SN457332677691" placeholder="Nhập số Serial/IMEI thiết bị...">
           <button type="button" class="btn-search" onclick="searchDevice()"><i class="fa-solid fa-magnifying-glass"></i> Tra Cứu</button>
         </div>
 
@@ -360,7 +360,7 @@
         stateContainer.innerHTML = '';
         table.style.display = 'table';
         tbody.innerHTML = tickets.map(t => {
-          const rawPhone = t.customerPhone || t.customer_phone || t.phone;
+          const rawPhone = t.phone || t.customer_phone || t.customerPhone;
           const phoneDisplay = formatPhoneQT15(rawPhone);
           const ticketCodeDisplay = t.ticketCode || t.ticket_code || 'BH000123/2026';
           const ticketId = t.ticket_id || t.ticketId || t.id;

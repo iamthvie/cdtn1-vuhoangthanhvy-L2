@@ -2,17 +2,17 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'mekong_crm_l2',
-  password: '1', 
-  port: 5432,
+  user: process.env.DB_USER || 'postgres',
+  host: process.env.DB_HOST || 'db',
+  database: process.env.DB_NAME || 'mekong_crm_l2',
+  password: process.env.DB_PASSWORD || '1',
+  port: process.env.DB_PORT || 5432,
 });
 
 class TicketRepository {
-  async findAll() {
+async findAll() {
     const query = `
-      SELECT t.*, c.full_name AS customer_phone, c.phone 
+      SELECT t.*, c.full_name AS customer_name, c.phone 
       FROM ticket t
       LEFT JOIN device d ON t.device_id = d.device_id
       LEFT JOIN customer c ON d.customer_id = c.customer_id

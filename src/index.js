@@ -19,6 +19,11 @@ app.use(express.static(path.join(__dirname, '../public')));
 // Đăng ký routes API
 app.use('/api', ticketRoutes);
 
+// Endpoint phục vụ healthcheck cho Docker
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 // Khởi chạy Server
 app.listen(PORT, () => {
   console.log(`Server CRM Luong L2 dang chay tai: http://localhost:${PORT}`);

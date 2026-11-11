@@ -4,11 +4,11 @@ const { Pool } = require('pg');
 const crypto = require('crypto');
 
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'mekong_crm_l2',
-  password: '1', 
-  port: 5432,
+  user: process.env.DB_USER || 'postgres',
+  host: 'localhost', 
+  database: process.env.DB_NAME || 'mekong_crm_l2',
+  password: process.env.DB_PASSWORD || '1',
+  port: process.env.DB_PORT || 5432,
 });
 
 function parseCsv(filePath) {
